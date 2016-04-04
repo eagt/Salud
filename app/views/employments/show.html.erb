@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Professional:</strong>
+  <%= @employment.professional %>
+</p>
+
+<p>
+  <strong>Clinic:</strong>
+  <%= @employment.clinic %>
+</p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @employment.creator %>
+</p>
+
+<%= link_to 'Edit', edit_employment_path(@employment) %> |
+<%= link_to 'Back', employments_path %>

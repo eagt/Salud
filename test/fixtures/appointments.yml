@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  clinic_id: 
+  comment: MyText
+  date: 2016-04-03 23:41:06
+  creator: MyString
+
+two:
+  clinic_id: 
+  comment: MyText
+  date: 2016-04-03 23:41:06
+  creator: MyString

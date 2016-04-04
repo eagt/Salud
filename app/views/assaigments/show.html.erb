@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Appointment:</strong>
+  <%= @assaigment.appointment %>
+</p>
+
+<p>
+  <strong>Professional:</strong>
+  <%= @assaigment.professional %>
+</p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @assaigment.creator %>
+</p>
+
+<%= link_to 'Edit', edit_assaigment_path(@assaigment) %> |
+<%= link_to 'Back', assaigments_path %>

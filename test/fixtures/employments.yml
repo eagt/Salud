@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  professional_id: 
+  clinic_id: 
+  creator: MyString
+
+two:
+  professional_id: 
+  clinic_id: 
+  creator: MyString
