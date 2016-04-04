@@ -4,38 +4,39 @@ class AppointmentsController < ApplicationController
   # GET /appointments
   # GET /appointments.json
   def index
-    @appointments = Appointment.all
+    @clinic = Clinic.find(params[:clinic_id])
+    @appointments = @clinic.appointments
   end
 
   # GET /appointments/1
   # GET /appointments/1.json
   def show
+    @appointment = Appointment.find(params[:id])
   end
 
   # GET /appointments/new
   def new
-    @appointment = Appointment.new
-  end
-
-  # GET /appointments/1/edit
-  def edit
+    @clinic = Clinic.find(params[:clinic_id])
+    @appointment = @clinic.appointments.build
   end
 
   # POST /appointments
   # POST /appointments.json
   def create
-    @appointment = Appointment.new(appointment_params)
-
-    respond_to do |format|
+    @clinic = Clinic.find(params[:clinic_id])
+    @appointment = @clinic.appointments.build(appointment_params)
       if @appointment.save
-        format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
-        format.json { render :show, status: :created, location: @appointment }
+        flash[:notice] = " Successfully created Appointment."
+        redirect_to(clinic_appointments_url)
       else
-        format.html { render :new }
-        format.json { render json: @appointment.errors, status: :unprocessable_entity }
+        render action: :new 
       end
-    end
   end
+
+   # GET /appointments/1/edit
+  def edit
+  end
+
 
   # PATCH/PUT /appointments/1
   # PATCH/PUT /appointments/1.json

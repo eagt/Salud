@@ -1,24 +1,30 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Clinic:</strong>
-  <%= @appointment.clinic %>
-</p>
+<div class="table-responsive">
+  <table id="show_table" class="display responsive" summary="Appointment details view">
 
-<p>
-  <strong>Comment:</strong>
-  <%= @appointment.comment %>
-</p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @appointment.date %>
-</p>
-
-<p>
-  <strong>Creator:</strong>
-  <%= @appointment.creator %>
-</p>
+ 	<tbody>
+      	<br>
+			  <tr>	
+			  	<th><%= t(:Clinic) %></th>
+				<td><%= @appointment.clinic.name%></td>
+			  </tr>
+			  <tr>	
+			   <th><%= t(:Comment) %></th>
+			   <td><%= @appointment.comment%></td>
+			  </tr>
+			  <tr>	
+			   <th><%= t(:Date) %></th>
+			   <td><%= @appointment.date%></td>
+			  </tr>
+			  <tr>	
+			   <th><%= t(:Creator) %></th>
+			   <td><%= @appointment.creator%></td>
+			  </tr>
+	</tbody>
+</table>
 
 <%= link_to 'Edit', edit_appointment_path(@appointment) %> |
-<%= link_to 'Back', appointments_path %>
+<%= link_to 'Back', :back %> 
+
+

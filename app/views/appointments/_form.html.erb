@@ -1,5 +1,4 @@
-<%= form_for(@appointment) do |f| %>
-  <% if @appointment.errors.any? %>
+ <% if @appointment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
 
@@ -10,11 +9,16 @@
       </ul>
     </div>
   <% end %>
+  
 
+<%= form_for([@clinic, @appointment]) do |f| %>
   <div class="field">
     <%= f.label :clinic_id %><br>
-    <%= f.text_field :clinic_id %>
-  </div>
+    <%=  @clinic.name %> 
+    <%#= f.hidden_field(:clinic_id, :value => @current_user.id) %> 
+ </div>
+
+
   <div class="field">
     <%= f.label :comment %><br>
     <%= f.text_area :comment %>
