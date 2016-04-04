@@ -1,9 +1,41 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Creator:</strong>
-  <%= @clinic.creator %>
-</p>
+<div class="table-responsive">
+  <table id="show_table" class="display responsive" summary="Company detail view">
+
+ 	<tbody>
+      	<br>
+	     <tr>	
+			<th><%= t(:id) %></th>
+			<td><%= @clinic.id%></td>
+		 </tr>
+
+		 <tr>	
+			<th><%= t(:name) %></th>
+			<td><%= @clinic.name%></td>
+		 </tr>
+
+		 <tr>	
+			<th><%= t(:creator) %></th>
+			<td><%= @clinic.creator%></td>
+		 </tr>
+
+	</tbody>
+  </table>
+ </div>
+
 
 <%= link_to 'Edit', edit_clinic_path(@clinic) %> |
 <%= link_to 'Back', clinics_path %>
+
+
+<!-- <div class="table-responsive">
+    <table id="show_table" class="display responsive" summary="Company detail view">
+      <tbody>
+      	<br>
+	     <tr>	
+			<th><#%= t(:id) %></th>
+			<td><%#= @company.id%></td>
+		 </tr>
+	     <tr>	
+		 -->
