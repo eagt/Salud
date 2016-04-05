@@ -9,16 +9,14 @@
       </ul>
     </div>
   <% end %>
-  
+
 
 <%= form_for([@clinic, @appointment]) do |f| %>
   <div class="field">
     <%= f.label :clinic_id %><br>
-    <%=  @clinic.name %> 
-    <%#= f.hidden_field(:clinic_id, :value => @current_user.id) %> 
+    <%=  @clinic.name %>
+    <%#= f.hidden_field(:clinic_id, :value => @current_user.id) %>
  </div>
-
-
   <div class="field">
     <%= f.label :comment %><br>
     <%= f.text_area :comment %>
