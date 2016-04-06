@@ -24,7 +24,7 @@
 
 
 <%= link_to 'Edit', edit_clinic_path(@clinic) %> |
-<%= link_to 'Back', clinics_path %> | 
+<%= link_to 'Back to CLinics', clinics_path %> | <!-- This will take us to the list of clinics only in development. Logic will need to be defined depending where was it call from -->
  <%= link_to 'Appointments', clinic_appointments_path(@clinic) %> |
  <%= link_to 'Professionals', clinic_professionals_path(@clinic) %>
 

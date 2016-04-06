@@ -21,10 +21,10 @@
         <td><%= appointment.date %></td>
         <td><%= appointment.creator %></td>
 
-        <td><%= link_to 'Show', appointment_path(appointment, {:clinic_id => @clinic.id}) %></td>
-        <td><%= link_to 'Edit', edit_appointment_path(appointment) %></td>
-        <td><%= link_to 'Destroy', [@clinic, appointment], method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
+        <td><%= link_to(t(:show), [@current_user, appointment], :class => 'action show') %></td>
+        <td><%= link_to(t(:edit), [:edit, @current_user, appointment], :class => 'action edit') %></td>
+        <td><%= link_to 'Destroy', [@current_user, appointment], method: :delete, data: { confirm: 'Are you sure?' } %></td> 
       </tr>
     <% end %>
   </tbody>
@@ -32,6 +32,7 @@
 
 <br>
 
-<%#= link_to 'New Appointment', new_clinic_appointment_path(@clinic) %>
+<%#= link_to 'New Appointment', new_clinic_appointment_path(@appointment) %>
 <br>
+ <%#= link_to 'New Appointment', [ @current_user_new_appointment], :class => 'action new' %>
 <%= link_to 'Clinics', clinics_path %>

@@ -24,11 +24,8 @@
 	</tbody>
 </table>
 
-<%= link_to 'Edit', edit_appointment_path(@appointment) %> |
+<%= link_to(t(:edit), [:edit, @current_user, @appointment], :class => 'action edit') %>
+<%= link_to 'Back to Appointments', [@current_user, params[:controller]] %>
 
-<%= link_to 'Back to Appointments', clinic_appointments_path(@clinic) %>
-
-<!-- 
-<%#= link_to 'Back to Appointments', appointment_path(@appointment) %>  -->
 
 

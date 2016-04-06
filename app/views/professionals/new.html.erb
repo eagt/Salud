@@ -6,7 +6,7 @@
  -->
 <% @page_title = t(:professional).pluralize(locale) %>
 
-<%= link_to("<< " + t(:return_to), [@current_user, params[:controller]], :class => 'back-link') %>
+<%= link_to("<< Return", [@current_user, params[:controller]], :class => 'back-link') %>
 
 <div class="professionals new">
   <h2><%= t(:create) + " " + t(:professional) %></h2>
@@ -15,9 +15,9 @@
 
     <%= render(:partial => "form", :locals => {:f => f}) %>
 
-    <div class="form-buttons">
-      <%= submit_tag(t(:create) + " " + t(:professional)) %>
-    </div>
+   <!--  <div class="form-buttons">
+      <%#= submit_tag(t(:create) + " " + t(:professional)) %>
+    </div> --> 
 
   <% end %>
 

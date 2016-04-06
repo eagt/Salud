@@ -1,11 +1,14 @@
 <p id="notice"><%= notice %></p>
 
+<%=  link_to("<< " + "Home", @current_user)  %>
+
 <h1>Listing Professionals</h1>
 
 <table>
   <thead>
     <tr>
         <th>ID</th>
+        <th>Clinic ID</th>
         <th>Creator</th>
         <th>Name</th>
       <th colspan="4"></th>
@@ -16,16 +19,20 @@
     <% @professionals.each do |professional| %>
       <tr>
         <td><%= professional.id %></td>
+        <td><%= @current_user.id %></td>
         <td><%= professional.creator %></td>
         <td><%= professional.name %></td>
-        <td><%= link_to 'Show', professional %></td>
-        <td><%= link_to 'Edit', edit_professional_path(professional) %></td>
-        <td><%= link_to 'Destroy', professional, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <td><%= link_to(t(:show), [@current_user, professional], :class => 'action show') %></td>
+        <td><%= link_to(t(:edit), [:edit, @current_user, professional], :class => 'action edit') %></td>
+        <td><%#= link_to(t(:delete), [:delete, @current_user, professional], :class => 'action delete') %></td>
+        <td><%= link_to 'Destroy', [@current_user, professional], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+  <!-- A professional won't be able to create another professional apart from itself -->
+  <%= link_to 'New Professional', new_clinic_professional_path %> 
 
-<%= link_to 'New Professional', new_professional_path %>

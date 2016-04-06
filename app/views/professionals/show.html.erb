@@ -23,7 +23,5 @@
  </div>
 
 
-<%= link_to 'Edit', edit_professional_path(@professional) %> |
-<%= link_to 'Back', professionals_path %> | 
- <%#= link_to 'Appointments', professional_appointments_path[@professional, @appointments] %>
- <%#= link_to 'Appointments', professional_appointments_path[@professional] %>
+<%= link_to(t(:edit), [:edit, @current_user, @professional], :class => 'action edit') %> |
+<%= link_to 'Back', [@current_user, params[:controller]] %>
