@@ -10,8 +10,7 @@ Rails.application.routes.draw do
       member do
         get :delete
         end
-      end
-    
+      end    
       resources :appointments do
         member do
           get :delete
@@ -22,7 +21,6 @@ Rails.application.routes.draw do
           get :delete
         end
       end   
-
   end
 
 
@@ -35,9 +33,13 @@ Rails.application.routes.draw do
       member do
         get :delete
       end
-    end
-   
-    resources :appointments do
+    end   
+    resources :assaigments do  # It could be appointments
+        member do
+          get :delete
+        end
+      end 
+      resources :appointments do
         member do
           get :delete
         end

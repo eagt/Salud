@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @appointment %> |
-<%= link_to 'Back to Appointments', :back %> 
+<%= link_to(t(:show), [@current_user, @appointment], :class => 'action show') %> |
+<%= link_to 'Back to Appointments', [@current_user, params[:controller]] %>

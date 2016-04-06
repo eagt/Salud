@@ -1,6 +1,22 @@
-<h1>Editing Professional</h1>
+<!-- <h1>Editing Professional</h1>
 
-<%= render 'form' %>
+<%#= render 'form' %> -->
 
-<%= link_to 'Show', @professional %> |
-<%= link_to 'Back', professionals_path %>
+<% @page_title = t(:professional).pluralize(locale) %>
+
+<%= link_to("<<  Return ", [@current_user, params[:controller]], :class => 'back-link') %>
+
+<div class="professionals edit">
+  <h2><%= "Uptade Professional" %></h2>
+
+  <%= form_for([@current_user, @professional]) do |f| %>
+
+    <%= render(:partial => "form", :locals => {:f => f}) %>
+
+<!--     <div class="form-buttons">
+      <%#= submit_tag(t(:edit) + " " + t(:professional)) %>
+    </div> --> 
+
+  <% end %>
+
+</div>

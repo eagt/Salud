@@ -20,7 +20,7 @@ class ProfessionalsController < ApplicationController
 
   def new    
       if @is_clinic # If the user is a clinic and is creating a new  professional
-         @professional = @current_user.professionals.new
+         @professional = @current_user.professionals.new(:creator => "Clinic")
       else # kicks in when registering a new Professional
         @professional = Professional.new(:creator => "Professional")
       end    

@@ -11,7 +11,7 @@
   <% end %>
   
 
-<%= form_for([@clinic, @appointment]) do |f| %>
+<%= form_for([@current_user, @appointment]) do |f| %>
   <div class="field">
     <%= f.label :clinic_id %><br>
     <%= @appointment.clinic.name %> 
