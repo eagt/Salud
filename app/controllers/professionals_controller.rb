@@ -1,64 +1,71 @@
 class ProfessionalsController < ApplicationController
   before_action :set_professional, only: [:show, :edit, :update, :destroy]
+  before_action :current_user
 
-  # GET /professionals
-  # GET /professionals.json
+  # def login
+  #   render layout: false
+  # end
+
   def index
-    @professionals = Professional.all
+    if @is_clinic # If the user is a Clinic
+      @professionals = @current_user.professionals
+    else # If the user is professional pass the whole list ONLY for testing
+      @professionals = Professional.all
+    end
   end
 
-  # GET /professionals/1
-  # GET /professionals/1.json
   def show
+    @professional = Professional.find(params[:id])
   end
 
-  # GET /professionals/new
-  def new
-    @professional = Professional.new
+  def new    
+      if @is_clinic # If the user is a clinic and is creating a new  professional
+         @professional = @current_user.professionals.new
+      else # kicks in when registering a new Professional
+        @professional = Professional.new(:creator => "Professional")
+      end    
   end
 
-  # GET /professionals/1/edit
-  def edit
-  end
-
-  # POST /professionals
-  # POST /professionals.json
-  def create
+  def create        
+    # Instantiate a new object using form parameters
     @professional = Professional.new(professional_params)
-
-    respond_to do |format|
-      if @professional.save
-        format.html { redirect_to @professional, notice: 'Professional was successfully created.' }
-        format.json { render :show, status: :created, location: @professional }
+    if @professional.save
+      if @is_clinic then Employment.create(:clinic => @current_user, :professional => @professional, :creator => "Clinic") end
+      # If save succeeds, redirect to the index action
+      flash[:notice] = "Professional #{:professional} created "
+      redirect_to([@current_user, :professionals]) 
       else
-        format.html { render :new }
-        format.json { render json: @professional.errors, status: :unprocessable_entity }
+      # If save fails, redisplay the form so user can fix problems
+      render('new')
       end
-    end
   end
 
-  # PATCH/PUT /professionals/1
-  # PATCH/PUT /professionals/1.json
+  def edit
+    @professional = Professional.find(params[:id])
+  end
+
   def update
-    respond_to do |format|
-      if @professional.update(professional_params)
-        format.html { redirect_to @professional, notice: 'Professional was successfully updated.' }
-        format.json { render :show, status: :ok, location: @professional }
-      else
-        format.html { render :edit }
-        format.json { render json: @professional.errors, status: :unprocessable_entity }
-      end
+    # Find and existing object using form parameters
+    @professional = Professional.find(params[:id])
+    # Update the object
+    if @professional.update_attributes(professional_params)
+      # If update succeeds, redirect to the index action
+      flash[:notice] = "#{:professional} updated successfully "
+      redirect_to([@current_user, @professional])
+    else
+      # If save fails, redisplay the from so user can fix problems
+      render('edit')
     end
   end
 
-  # DELETE /professionals/1
-  # DELETE /professionals/1.json
+  def delete
+    @professional = Professional.find(params[:id])
+  end
+
   def destroy
-    @professional.destroy
-    respond_to do |format|
-      format.html { redirect_to professionals_url, notice: 'Professional was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    professional = Professional.find(params[:id]).destroy
+    flash[:notice] = "#{:professional} destroyed successfully. "
+    redirect_to([@current_user, :professionals])
   end
 
   private
@@ -69,6 +76,13 @@ class ProfessionalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def professional_params
-      params.require(:professional).permit(:creator, :name)
+      params.require(:professional).permit(:id, :creator, :name)
     end
 end
+
+
+
+
+
+
+

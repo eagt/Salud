@@ -1,65 +1,78 @@
 class ClinicsController < ApplicationController
   before_action :set_clinic, only: [:show, :edit, :update, :destroy]
-
-  # GET /clinics
-  # GET /clinics.json
+  before_action :current_user
+  
+  # Works for clinics on their own
   def index
+    if @is_clinic
     @clinics = Clinic.all
+   else 
+    @clinics = @current_user.clinics
+   end
   end
 
-  # GET /clinics/1
-  # GET /clinics/1.json
+# Works for clinics on their own
   def show
+     @clinic = Clinic.find(params[:id])
   end
 
-  # GET /clinics/new
-  def new
-    @clinic = Clinic.new
-  end
 
-  # GET /clinics/1/edit
-  def edit
-  end
+# Works for clinics on their own
+ def new
+      if !@is_clinic # If the user is a professional and is creating a new clinic
+         @clinic = @current_user.clinics.new(:creator => "Professional")
+      else # kicks in when registering a new Clinic
+         @clinic = Clinic.new(:creator => "Clinic")
+      end   
+   end
 
-  # POST /clinics
-  # POST /clinics.json
-  def create
+ # Works for clinics on their own
+   def create               
+    # Instantiate a new object using form parameters
     @clinic = Clinic.new(clinic_params)
-
-    respond_to do |format|
-      if @clinic.save
-        format.html { redirect_to @clinic, notice: 'Clinic was successfully created.' }
-        format.json { render :show, status: :created, location: @clinic }
-      else
-        format.html { render :new }
-        format.json { render json: @clinic.errors, status: :unprocessable_entity }
-      end
-    end
+    if @clinic.save
+      if !@is_clinic then Employment.create(:clinic => @clinic, :professional => @current_user, :creator => "Professional") end
+      # If save succeeds, redirect to the index action     
+      flash[:notice] = "Clinic #{@clinic.name} created"
+      redirect_to([@current_user, :clinics])   
+    else
+      # If save fails, redisplay the from so user can fix problems
+      render('new')
+    end 
   end
 
-  # PATCH/PUT /clinics/1
-  # PATCH/PUT /clinics/1.json
+# Works for clinics on their own
+ def edit
+    @clinic = Clinic.find(params[:id])
+  end
+
+# Works for clinics on their own
   def update
-    respond_to do |format|
-      if @clinic.update(clinic_params)
-        format.html { redirect_to @clinic, notice: 'Clinic was successfully updated.' }
-        format.json { render :show, status: :ok, location: @clinic }
-      else
-        format.html { render :edit }
-        format.json { render json: @clinic.errors, status: :unprocessable_entity }
-      end
+    # Find and existing object using form parameters
+    @clinic = Clinic.find(params[:id])
+    # Update the object
+    if @clinic.update_attributes(clinic_params)
+      # If update succeeds, redirect to the index action
+      flash[:notice] = "Clinic #{@clinic.name} upadated. "
+      redirect_to([@current_user, @clinic])
+    else
+      # If save fails, redisplay the from so user can fix problems
+      render('edit')
     end
+  end
+ 
+# Works for clinics on their own
+  def delete
+    @clinic = Clinic.find(params[:id])
   end
 
-  # DELETE /clinics/1
-  # DELETE /clinics/1.json
+# Works for clinics on their own
   def destroy
-    @clinic.destroy
-    respond_to do |format|
-      format.html { redirect_to clinics_url, notice: 'Clinic was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    clinic = Clinic.find(params[:id]).destroy
+    flash[:notice] = " CLinic '#{@clinic.name} destroyed successfully. "
+    redirect_to([@current_user, :clinics])
   end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -69,6 +82,7 @@ class ClinicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def clinic_params
-      params.require(:clinic).permit(:creator, :name)
+      params.require(:clinic).permit(:id, :creator, :name)
     end
 end
+

@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     # Take the URL to extract the resource: [Professional or Company]
     resource= request.path.split('/')[1]
     
-    @is_company = resource == "companies" ? true : false
+    @is_clinic = resource == "clinics" ? true : false
         
     if resource && params[resource.singularize+"_id"]
       @current_user = resource.singularize.classify.constantize.find(params[resource.singularize+"_id"])

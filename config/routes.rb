@@ -1,19 +1,59 @@
 Rails.application.routes.draw do
+  
   resources :assaigments
   
-  resources :employments
-  resources :professionals
-
-  resources :clinics, shallow: true  do 
+  resources :clinics do
       member do
         get :delete
       end
+      resources :professionals do
+      member do
+        get :delete
+        end
+      end
+    
       resources :appointments do
         member do
           get :delete
         end
-      end    
+      end  
+      resources :employments do
+       member do
+          get :delete
+        end
+      end   
+
   end
+
+
+
+  resources :professionals do
+    member do
+      get :delete
+    end
+    resources :clinics do
+      member do
+        get :delete
+      end
+    end
+   
+    resources :appointments do
+        member do
+          get :delete
+        end
+      end 
+      resources :employments do
+        member do
+          get :delete
+        end
+      end    
+   end
+   
+
+  #resources :appointments  # This will help to work on the appointments routes as normal
+ 
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

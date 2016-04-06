@@ -1,11 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @professional.name %><br>
-  <strong>Creator:</strong>
-  <%= @professional.creator %>
-</p>
+<div class="table-responsive">
+  <table id="show_table" class="display responsive" summary="Company detail view">
+
+ 	<tbody>
+      	<br>
+	     <tr>	
+			<th><%= t(:id) %></th>
+			<td><%= @professional.id%></td>
+		 </tr>
+
+		 <tr>	
+			<th><%= t(:name) %></th>
+			<td><%= @professional.name%></td>
+		 </tr>
+		 <tr>	
+			<th><%= t(:creator) %></th>
+			<td><%= @professional.creator%></td>
+		 </tr>
+	</tbody>
+  </table>
+ </div>
+
 
 <%= link_to 'Edit', edit_professional_path(@professional) %> |
-<%= link_to 'Back', professionals_path %>
+<%= link_to 'Back', professionals_path %> | 
+ <%#= link_to 'Appointments', professional_appointments_path[@professional, @appointments] %>
+ <%#= link_to 'Appointments', professional_appointments_path[@professional] %>
