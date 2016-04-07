@@ -1,0 +1,18 @@
+<% @page_title = " Delete Appointmnet" %>
+
+<%= link_to("<< Return", [@current_user, params[:controller]], :class => 'back-link') %>
+
+<div class="appointment delete">
+	<h2><%= t(:delete) + " " + t(:appointment) %></h2>
+
+	<%= form_for([@current_user, @appointment], :html => {:method => :delete}) do |f| %>
+
+		<p> <%= "Do you want to delete"  </p>
+		<p class="reference-name"><%= @appointment.date_time %></p>
+
+
+		<div class="form-buttons">
+			<%= submit_tag("Delete Appointmnet") %>
+		</div>
+	<% end %>
+</div>

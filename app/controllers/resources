@@ -1,0 +1,29 @@
+es/clinics/1/professionals
+resource = clinics
+clinics
+
+@is_clinic = true
+
+if resource && params[clinic_id]
+if true && true
+@current_user = Clinic.find(params[clinic_id])
+
+ [:new, @current_user, params[:controller].singularize]
+
+  new, Clinic.find(params[clinic_id]), professional
+
+  new_clinics_professional(@clinic)
+
+
+es/professionals
+resource = professionals
+@is_clinic = false
+if resource && params[professional_id]
+if true && false
+@current_user = nil
+
+[:new, @current_user, params[:controller].singularize]
+
+new ,  nil , professional
+
+new_professional

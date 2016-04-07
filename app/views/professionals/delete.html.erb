@@ -1,0 +1,17 @@
+<% @page_title = " Delete clinic"%>
+
+<%= link_to("<< Return", [@current_user, params[:controller]], :class => 'back-link') %>
+
+<div class="professional delete">
+	<h2><%= t(:delete) + " " + t(:professional) %></h2>
+
+	<%= form_for([@current_user, @professional], :html => {:method => :delete}) do |f| %>
+
+		<p> <%= "Do you want to delete" %> </p>
+		<p class="reference-name"><%= @professional.name %></p>
+
+		<div class="form-buttons">
+			<%= submit_tag(" Delete Professional") %>
+		</div>
+	<% end %>
+</div>

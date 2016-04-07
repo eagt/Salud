@@ -1,0 +1,49 @@
+
+Skip to content
+This repository
+
+    Pull requests
+    Issues
+    Gist
+
+    @eagt
+
+1
+0
+
+    0
+
+mariomc2/timesheet
+Code
+Issues 0
+Pull requests 0
+Wiki
+Pulse
+Graphs
+timesheet/app/views/professionals/delete.html.erb
+925886d on 23 Feb
+Mario Gamez Updated up to centralized current user
+18 lines (12 sloc) 543 Bytes
+<% @page_title = t(:professional).pluralize(locale) %>
+
+<%= link_to("<< " + t(:return_to), [@current_user, params[:controller]], :class => 'back-link') %>
+
+<div class="professional delete">
+	<h2><%= t(:delete) + " " + t(:professional) %></h2>
+
+	<%= form_for([@current_user, @professional], :html => {:method => :delete}) do |f| %>
+
+		<p> <%= t(:delete_message) %> </p>
+
+		<p class="reference-name"><%= @professional.email %></p>
+
+		<div class="form-buttons">
+			<%= submit_tag(t(:delete) + " " + t(:professional)) %>
+		</div>
+	<% end %>
+</div>
+
+    Status API Training Shop Blog About 
+
+    © 2016 GitHub, Inc. Terms Privacy Security Contact Help 
+
