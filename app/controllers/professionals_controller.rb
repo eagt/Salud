@@ -2,6 +2,8 @@ class ProfessionalsController < ApplicationController
   before_action :set_professional, only: [:show, :edit, :update, :destroy]
   before_action :current_user
 
+   layout "professional"
+
   # def login
   #   render layout: false
   # end
@@ -59,11 +61,11 @@ class ProfessionalsController < ApplicationController
   end
 
   def delete
-    @professional = Professional.find(params[:id])
+    #@professional = Professional.find(params[:id])
   end
 
   def destroy
-    professional = Professional.find(params[:id]).destroy
+    #professional = Professional.find(params[:id]).destroy
     flash[:notice] = "#{:professional} destroyed successfully. "
     redirect_to([@current_user, :professionals])
   end
@@ -73,6 +75,10 @@ class ProfessionalsController < ApplicationController
     def set_professional
       @professional = Professional.find(params[:id])
     end
+
+    #  def set_locale
+    #   I18n.locale = params[:locale] || I18n.default_locale
+    # end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def professional_params

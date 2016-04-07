@@ -1,6 +1,11 @@
-<p id="notice"><%= notice %></p>
+
 
 <%=  link_to("<< " + "Home", @current_user)  %>
+
+
+  <div class="table-responsive">
+    <table id="index_table" class="display responsive" summary="appointment list">
+      <thead class="thead-inverse">
 
 <h1>Listing Professionals</h1>
 
@@ -11,6 +16,7 @@
         <th>Clinic ID</th>
         <th>Creator</th>
         <th>Name</th>
+        <th>Actions</th>
       <th colspan="4"></th>
     </tr>
   </thead>
@@ -19,14 +25,16 @@
     <% @professionals.each do |professional| %>
       <tr>
         <td><%= professional.id %></td>
-        <td><%= @current_user.id %></td>
+        <td><%#= @current_user.id %></td>
         <td><%= professional.creator %></td>
         <td><%= professional.name %></td>
 
         <td><%= link_to(t(:show), [@current_user, professional], :class => 'action show') %></td>
         <td><%= link_to(t(:edit), [:edit, @current_user, professional], :class => 'action edit') %></td>
         <td><%#= link_to(t(:delete), [:delete, @current_user, professional], :class => 'action delete') %></td>
-        <td><%= link_to 'Destroy', [@current_user, professional], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%#= link_to 'Destroy', [@current_user, professional], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+         <td><%= link_to(' Delete', [:delete, @current_user, professional], :class => 'action delete') %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,5 +42,8 @@
 
 <br>
   <!-- A professional won't be able to create another professional apart from itself -->
-  <%= link_to 'New Professional', new_clinic_professional_path %> 
-
+<% if @is_clinic %>
+  <%= link_to('New Professional', [:new, @current_user, params[:controller].singularize], :class => 'action new') %>
+  <%#= link_to 'New Professional', new_clinic_professional_path %> 
+<% else %>
+<% end %>

@@ -1,16 +1,12 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
   before_action :current_user
-  # GET /appointments
-  # GET /appointments.json
 
+
+ layout "professional"
 
  
   def index
-  
-
-
-
     if params[:clinic_id]
       @appointments = @current_user.appointments.where(clinic_id: params[:clinic_id])
     elsif params[:professional_id]
@@ -43,7 +39,7 @@ class AppointmentsController < ApplicationController
 
     def new
         @appointment = @current_user.appointments.new({:creator => @current_user.name})
-        redirect_to([@current_user, :appointments])
+        #redirect_to([@current_user, :appointments]) --> latest change
     end
   
   # def new

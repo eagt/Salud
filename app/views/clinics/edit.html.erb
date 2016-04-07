@@ -1,7 +1,36 @@
-<h1>Editing Clinic</h1>
 
-<%= render 'form' %>
+<% @page_title = t(:clinic).pluralize(locale) %>
+
+<h4>Clinic <%= @clinic.name %></h4>
+
+<%= link_to("<<  Return ", [@current_user, params[:controller]], :class => 'back-link') %>
+
+<div class="clinics edit">
+  <h2><%= "Uptade Clinic" %></h2>
+
+  <%= form_for([@current_user, @clinic]) do |f| %>
+
+    <%= render(:partial => "form", :locals => {:f => f}) %>
+
+<!--     <div class="form-buttons">
+      <%#= submit_tag(t(:edit) + " " + t(:professional)) %>
+    </div> --> 
+
+  <% end %>
+
+</div>
 
 <%= link_to 'Show', @clinic %> |
 <%#= link_to 'Back', clinics_path %>
-<%= link_to 'Back to Clinics', clinics_path  %>
+<%= link_to 'Back', :back  %>
+
+
+
+<!-- 
+<h1>Editing Clinic</h1>
+
+<%#= render 'form' %>
+
+<%#= link_to 'Show', @clinic %> |
+<%#= link_to 'Back', clinics_path %>
+<%#= link_to 'Back', :back  %> -->

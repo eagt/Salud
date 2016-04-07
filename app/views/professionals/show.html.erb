@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+
+
+<h4>Professional <%= @professional.name %></h4>
 
 <div class="table-responsive">
   <table id="show_table" class="display responsive" summary="Company detail view">
@@ -24,4 +26,14 @@
 
 
 <%= link_to(t(:edit), [:edit, @current_user, @professional], :class => 'action edit') %> |
-<%= link_to 'Back', [@current_user, params[:controller]] %>
+
+<%#= link_to 'Back', :back %> 
+<%= link_to 'Back', [@current_user, params[:controller]] %> |
+
+ <%= link_to 'Appointments', professional_appointments_path(@professional) %> |
+
+<% if !@is_clinic %>
+ <%= link_to 'Clinics', professional_clinics_path(@professional) %>
+<% else %>
+<% end %> 
+ 

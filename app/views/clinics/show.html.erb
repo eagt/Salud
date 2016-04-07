@@ -1,4 +1,9 @@
-<p id="notice"><%= notice %></p>
+
+
+<h4>Clinic <%= @clinic.name %></h4>
+
+<%=  link_to("<< " + "Home", @current_user)  %>
+
 
 <div class="table-responsive">
   <table id="show_table" class="display responsive" summary="Company detail view">
@@ -24,7 +29,14 @@
 
 
 <%= link_to 'Edit', edit_clinic_path(@clinic) %> |
-<%= link_to 'Back to CLinics', clinics_path %> | <!-- This will take us to the list of clinics only in development. Logic will need to be defined depending where was it call from -->
+<%= link_to 'Back', :back %> |
+
+<%#= link_to 'Back to CLinics', clinics_path %>  <!-- This will take us to the list of clinics only in development. Logic will need to be defined depending where was it call from -->
  <%= link_to 'Appointments', clinic_appointments_path(@clinic) %> |
- <%= link_to 'Professionals', clinic_professionals_path(@clinic) %>
+ <%#= link_to 'Professionals', clinic_professionals_path(@clinic) %>
+
+ <% if @is_clinic %>
+<%= link_to 'Professionals', clinic_professionals_path(@clinic) %>
+<% else %>
+<% end %> 
 

@@ -4,6 +4,8 @@
 
 <% @page_title = t(:professional).pluralize(locale) %>
 
+<h4>Professional <%= @professional.name %></h4>
+
 <%= link_to("<<  Return ", [@current_user, params[:controller]], :class => 'back-link') %>
 
 <div class="professionals edit">

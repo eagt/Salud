@@ -1,8 +1,8 @@
 class AssaigmentsController < ApplicationController
   before_action :set_assaigment, only: [:show, :edit, :update, :destroy]
 
-  # GET /assaigments
-  # GET /assaigments.json
+ layout "professional"
+ 
   def index
     @assaigments = Assaigment.all
   end

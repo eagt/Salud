@@ -1,6 +1,8 @@
 class ClinicsController < ApplicationController
   before_action :set_clinic, only: [:show, :edit, :update, :destroy]
   before_action :current_user
+
+   layout "professional"
   
   # Works for clinics on their own
   def index

@@ -1,8 +1,8 @@
 class EmploymentsController < ApplicationController
   before_action :set_employment, only: [:show, :edit, :update, :destroy]
 
-  # GET /employments
-  # GET /employments.json
+  layout "professional"
+
   def index
     @employments = Employment.all
   end
