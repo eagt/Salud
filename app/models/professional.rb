@@ -5,4 +5,8 @@ class Professional < ActiveRecord::Base
 
 	has_many :assaigments
 	has_many :appointments, through: :assaigments
+
+	accepts_nested_attributes_for :assaigments, :employments
+
+
 end

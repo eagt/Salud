@@ -2,9 +2,10 @@
 
 <%=  link_to("<< " + "Home", @current_user)  %>
 
-<h1>Listing Clinics</h1>
+<h2>Clinics</h2>
 
-<table>
+<div class="table-responsive">
+ <table class="table table-striped">
   <thead>
     <tr>
       <th>Clinic Id</th>
@@ -26,13 +27,13 @@
 
         <td><%= link_to 'Edit', edit_clinic_path(clinic) %></td>
 
-       <td> <%= link_to(t(:delete), [:delete, @current_user, clinic], :class => 'action delete') %></td>
+       <td> <%= link_to('Delete', [:delete, @current_user, clinic], :class => 'action delete') %></td>
      
       </tr>
     <% end %>
   </tbody>
 </table>
-
+</div>
 <br>
 
   <!-- A clinic won't be able to create another clinic apart from itself -->

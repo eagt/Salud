@@ -1,14 +1,17 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Listing Appointments</h1>
 
-<table>
+<h2> Appointments</h2>
+ <div class="table-responsive">
+            <table class="table table-striped">
   <thead>
     <tr>
       <th>Clinic</th>
       <th>Comment</th>
       <th>Date</th>
       <th>Creator</th>
+      <th>Professionals</th>
+
+      <th>Actions</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,7 +23,7 @@
         <td><%= appointment.comment %></td>
         <td><%= appointment.date %></td>
         <td><%= appointment.creator %></td>
-
+        <td><%#= appointment.professionals.size %></td>
 
         <td><%= link_to(t(:show), [@current_user, appointment], :class => 'action show') %></td>
         <td><%= link_to(t(:edit), [:edit, @current_user, appointment], :class => 'action edit') %></td>
@@ -29,10 +32,11 @@
     <% end %>
   </tbody>
 </table>
+</div>
 
 <br>
 
-<%= link_to 'New Appointment', new_clinic_appointment_path %>
+<%= link_to('New Appointment', [:new, @current_user, params[:controller].singularize], :class => 'action new') %>
 <br>
  <%#= link_to 'New Appointment', {[new_@current_user_appointment], :class => 'action new'} %>
 <%= link_to 'Clinics', clinics_path %>

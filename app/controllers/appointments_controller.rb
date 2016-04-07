@@ -39,7 +39,7 @@ class AppointmentsController < ApplicationController
 
     def new
         @appointment = @current_user.appointments.new({:creator => @current_user.name})
-        #redirect_to([@current_user, :appointments]) --> latest change
+        #redirect_to([@current_user, :appointments]) #--> latest change
     end
   
   # def new
@@ -148,6 +148,6 @@ class AppointmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def appointment_params
-      params.require(:appointment).permit(:id, :clinic_id, :comment, :date, :creator)
+      params.require(:appointment).permit(:id, :clinic_id, :comment, :date, :creator, assignments_attributes: [:id, :_destroy, :appointment_id, :professional_id, :creator])
     end
 end

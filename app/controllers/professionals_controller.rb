@@ -61,12 +61,12 @@ class ProfessionalsController < ApplicationController
   end
 
   def delete
-    #@professional = Professional.find(params[:id])
+    @professional = Professional.find(params[:id])
   end
 
   def destroy
-    #professional = Professional.find(params[:id]).destroy
-    flash[:notice] = "#{:professional} destroyed successfully. "
+    professional = Professional.find(params[:id]).destroy
+    flash[:notice] = "Professional #{@professional.name} destroyed successfully. "
     redirect_to([@current_user, :professionals])
   end
 

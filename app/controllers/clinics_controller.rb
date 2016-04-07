@@ -71,7 +71,7 @@ class ClinicsController < ApplicationController
 # Works for clinics on their own
   def destroy
     clinic = Clinic.find(params[:id]).destroy
-    flash[:notice] = " CLinic '#{@clinic.name} destroyed successfully. "
+    flash[:notice] = " CLinic #{@clinic.name} destroyed successfully. "
     redirect_to([@current_user, :clinics])
   end
   
