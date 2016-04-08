@@ -1,47 +1,33 @@
    <div id="error_explanation">
       <h2><%= pluralize(@appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+  </div>
 
-      <ul>
-       @appointment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <end %>
-      </ul>
-    </div>
 
-  
-
-<%= error_messages_for(@appointment) %>
 
 <div class="table-responsive">
   <table id="fields_table" class="display responsive" summary="Appointment form fields">
     <tbody>
       <tr>
         <th><%= f.label(:professional_id) %></th>
-       <!--  <td><%#= f.fields_for :professionals do |professional| %>
-              <%#= render "professionals_fields", f: professional %>
-            end %>        
-            <br>
-            <%#= link_to_add_association t(:add_professional), f, :professionals, class: "btn btn-default add-button" %></td> <br>
-        </tr> -->
-         <td><%= f.fields_for :assaignments do |assaignment| %>
+        <td><%= f.fields_for :assaignments do |assaignment| %>
               <%= render "assaignment_fields", :f => assaignment %>
             <% end %>        
             <br>
-            <%= link_to_add_association 'Add New Professional', f, :assaignments, class: "btn btn-default add-button" %>
-         </td>
-
+            <%= link_to_add_association 'Add Professional', f, :assaignments %>
+        </td>
+        </tr>
         <tr>
         <th><%= f.label :comment %></th><br>
-        <td><%= f.text_area :comment %></td> <br>
-        </tr>
+        <td><%= f.text_area :comment %></td> 
+        </tr><br>
         <tr>
         <th><%= f.label :date %> </th>
-        <td> <%= f.datetime_select :date %></td> <br>
-        </tr>
+        <td> <%= f.datetime_select :date %></td>
+        </tr><br>
         <tr>
         <th><%= f.label :creator %></th>
-        <td><%=  f.text_field :creator %></td> <br> <br>
-        </tr>
+        <td><%=  f.text_field :creator %></td>
+        </tr><br>
       </tbody>
     </table>
  </div>

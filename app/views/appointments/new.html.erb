@@ -1,21 +1,21 @@
 
 
-
-
-
-<%= link_to("<< Return", [@current_user, params[:controller]], :class => 'back-link') %>
+<%= link_to("<< Return ", [@current_user, params[:controller]], :class => 'back-link') %>
 
 <div class="appointments new">
-  <h2><%= t(:create) + " " + t(:appointment) %></h2>
+  <h2><%= "Create Appointment" %></h2>
 
   <%= form_for([@current_user, @appointment]) do |f| %>
 
     <%= render(:partial => "form", :locals => {:f => f}) %>
 
     <div class="form-buttons">
-      <%= submit_tag( "Create Appointment") %>
+      <%= submit_tag(" Create Appointment") %>
     </div>
-
   <% end %>
 
 </div>
+
+
+
+
