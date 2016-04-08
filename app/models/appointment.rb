@@ -1,9 +1,9 @@
 class Appointment < ActiveRecord::Base
   belongs_to :clinic
 
-  has_many :assignments
-  has_many :professionals, through: :assaigments
+  has_many :assaignments
+  has_many :professionals, through: :assaignments
 
   # Parents accept nested attributes
-  accepts_nested_attributes_for :assignments
+  accepts_nested_attributes_for :assaignments
 end

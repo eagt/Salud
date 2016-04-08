@@ -1,62 +1,48 @@
- <% if @appointment.errors.any? %>
-    <div id="error_explanation">
+   <div id="error_explanation">
       <h2><%= pluralize(@appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
 
       <ul>
-      <% @appointment.errors.full_messages.each do |message| %>
+       @appointment.errors.full_messages.each do |message| %>
         <li><%= message %></li>
-      <% end %>
+      <end %>
       </ul>
     </div>
-  <% end %>
+
   
 
-<%= form_for([@current_user, @appointment]) do |f| %>
+<%= error_messages_for(@appointment) %>
 
-     <tr>
-        <th><%= f.label(:clinic_id) %></th>
-        <td><%= @is_clinic ? @current_user.name : f.collection_select(:clinic_id, @current_user.clinics, :id, :name, include_blank: true) %></td>
-      </tr>
-
-
-  <div class="field">
-  
-      <th><%= f.label(:professional_id, t(:professional)) %></th>
-        <td>          
-          <% if @is_clinic %>
-            <%= f.fields_for :assignments do |assignment| %>
-              <%= render "assignment_fields", :f => assignment %>
+<div class="table-responsive">
+  <table id="fields_table" class="display responsive" summary="Appointment form fields">
+    <tbody>
+      <tr>
+        <th><%= f.label(:professional_id) %></th>
+       <!--  <td><%#= f.fields_for :professionals do |professional| %>
+              <%#= render "professionals_fields", f: professional %>
+            end %>        
+            <br>
+            <%#= link_to_add_association t(:add_professional), f, :professionals, class: "btn btn-default add-button" %></td> <br>
+        </tr> -->
+         <td><%= f.fields_for :assaignments do |assaignment| %>
+              <%= render "assaignment_fields", :f => assaignment %>
             <% end %>        
             <br>
-            <%= link_to_add_association t(:add_new_professional), f, :assignments %>
-            <%= f.hidden_field(:clinic_id, :value => @current_user.id) %>
-          <% else %>
-            <%#= @appointment.professional.first_name + " " + @appointment.professional.last_name %>
-            <%#= f.hidden_field(:professional_id, :value => @current_user.id) %>
-          <% end %>  
-        </td>  
+            <%= link_to_add_association 'Add New Professional', f, :assaignments, class: "btn btn-default add-button" %>
+         </td>
 
+        <tr>
+        <th><%= f.label :comment %></th><br>
+        <td><%= f.text_area :comment %></td> <br>
+        </tr>
+        <tr>
+        <th><%= f.label :date %> </th>
+        <td> <%= f.datetime_select :date %></td> <br>
+        </tr>
+        <tr>
+        <th><%= f.label :creator %></th>
+        <td><%=  f.text_field :creator %></td> <br> <br>
+        </tr>
+      </tbody>
+    </table>
+ </div>
 
-
-
-
-
-
-
-  </div>
-  <div class="field">
-    <%= f.label :comment %><br>
-    <%= f.text_area :comment %>
-  </div>
-  <div class="field">
-    <%= f.label :date %><br>
-    <%= f.datetime_select :date %>
-  </div>
-  <div class="field">
-    <%= f.label :creator %><br>
-    <%=  f.text_field :creator %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

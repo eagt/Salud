@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20160403224221) do
 
   add_index "appointments", ["clinic_id"], name: "index_appointments_on_clinic_id"
 
-  create_table "assaigments", force: :cascade do |t|
+  create_table "assaignments", force: :cascade do |t|
     t.integer  "appointment_id"
     t.integer  "professional_id"
     t.string   "creator"
@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 20160403224221) do
     t.datetime "updated_at",      null: false
   end
 
-  add_index "assaigments", ["appointment_id"], name: "index_assaigments_on_appointment_id"
-  add_index "assaigments", ["professional_id"], name: "index_assaigments_on_professional_id"
+  add_index "assaignments", ["appointment_id"], name: "index_assaignments_on_appointment_id"
+  add_index "assaignments", ["professional_id"], name: "index_assaignments_on_professional_id"
 
   create_table "clinics", force: :cascade do |t|
     t.string   "name"

@@ -1,0 +1,35 @@
+.form-inline.clearfix
+<li class="nested-fields">
+	<table class="table table-inverse">
+		<tbody>
+			<div>
+				<tr>
+					<th><%= f.label :professional_id %></th>
+					<td><%= f.text_field(:professional_id) %></td> %></td>
+				</tr>
+			<!-- 	<tr>
+					<th><%#= f.label :appointment_id %></th>
+					<td> <%#= f.text_field :appointment_id %></td>
+				</tr>
+				<tr>
+					<th><%#= f.label :creator %></th>
+					<td><%#= f.text_field :creator %></td>
+				</tr> -->
+				<tr><%= link_to_remove_association (:remove), f %></tr>
+			</div>
+		</tbody>
+	</table>
+</li>
+
+ <!-- <div class="field">
+    <%#= f.label :appointment_id %><br>
+    <%#= f.text_field :appointment_id %>
+  </div>
+  <div class="field">
+    <#%= f.label :professional_id %><br>
+    <#%= f.text_field :professional_id %>
+  </div>
+  <div class="field">
+    # f.label :creator %><br>
+    <%#= f.text_field :creator %>
+  </div> -->
