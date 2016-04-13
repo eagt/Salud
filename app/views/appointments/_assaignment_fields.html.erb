@@ -1,15 +1,15 @@
-
-<li class="nested-fields">
+git <li class="nested-fields">
 	<table class="table table-inverse">
 		<tbody>
 			<div>
 				<tr>
-					<th><%= f.label :professional_id %></th>
-					<td><%= f.text_field(:professional_id) %></td> %></td>
-				</tr> 
-				<tr><%= link_to_remove_association (:remove), f %></tr>
+					<th><%= f.label(:professional_id, t(:professional)) %></th>
+					<td><%= f.text_field(:professional_id) %></td>
+				</tr>
+			
+				
+				<tr><%= link_to_remove_association "remove", f %></tr>
 			</div>
 		</tbody>
 	</table>
 </li>
-
