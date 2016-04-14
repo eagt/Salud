@@ -25,10 +25,18 @@
 			   <th><%= t(:Professional) %></th>
 			   <td><%= @appointment.professional_ids%></td>
 			  </tr>
+
+			  <!-- This will show professional/s names and its/their ID depending on how many professionals are booked for this appointment. This is iterating over an array-->
 			   <tr>	
-			   <th><%= t(:Professional_name) %></th>
-			   <td><%= @appointment.professional.name%></td>
-			  </tr>
+			   <th><%= (:professional_name) %></th>
+				   <% @appointment.professionals.each do |professional| %> 
+                    <tr>
+                      <td><%= professional.name  %></td>
+                      <td><%= "ID: " + professional.id.to_s %></td>
+                    </tr>
+            
+				  <% end %> 
+			
 	</tbody>
 </table>
 

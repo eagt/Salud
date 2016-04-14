@@ -1,7 +1,7 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
   before_action :current_user
-
+  protect_from_forgery with: :null_session  # Set to be able to delete appointments with null_session
 
  layout "professional"
 
