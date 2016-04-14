@@ -2,11 +2,14 @@
 	<table class="table table-inverse">
 		<tbody>
 			<div>
+			 <%#= f.hidden_field(:company_id, :value => @current_user.id) %>
 				<tr>
-					<th><%= f.label(:professional_id) %></th>
+					<th><%= f.label(:professional_Id) %></th>
+
 					<td><%= f.text_field(:professional_id) %></td>
 				</tr>
-				
+				 
+
 				<tr>
 					<th><%= f.label(:creator) %></th>
 					<td><%= f.text_field(:creator) %></td>

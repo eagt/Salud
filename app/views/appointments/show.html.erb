@@ -21,26 +21,30 @@
 			   <th><%= t(:Creator) %></th>
 			   <td><%= @appointment.creator%></td>
 			  </tr>
+
+			  <!-- This will show professionals ids in an array] -->
 			  <tr>	
 			   <th><%= t(:Professional) %></th>
 			   <td><%= @appointment.professional_ids%></td>
 			  </tr>
 
 			  <!-- This will show professional/s names and its/their ID depending on how many professionals are booked for this appointment. This is iterating over an array-->
+			  
 			   <tr>	
-			   <th><%= (:professional_name) %></th>
-				   <% @appointment.professionals.each do |professional| %> 
-                    <tr>
-                      <td><%= professional.name  %></td>
-                      <td><%= "ID: " + professional.id.to_s %></td>
-                    </tr>
-            
-				  <% end %> 
+			   <% @appointment.professionals.each do |professional| %> 
+			   	<th><%= "Professional Name:" %></th>
+			    <td><%= professional.name  %></td> 
+               	<th><%= "Professional ID:" %></th>
+                <td><%= professional.id.to_s %></td>
+               </tr>            
+				<% end %> 
 			
 	</tbody>
 </table>
+<br>
+<br>
 
-<%= link_to(t(:edit), [:edit, @current_user, @appointment], :class => 'action edit') %>
+<%= link_to(t(:edit), [:edit, @current_user, @appointment], :class => 'action edit') %> |
 <%= link_to 'Back to Appointments', [@current_user, params[:controller]] %>
 
 

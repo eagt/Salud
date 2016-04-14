@@ -8,9 +8,8 @@
   <table id="fields_table" class="display responsive" summary="Appointment form fields">
     <tbody>
       <tr>
-        <th><%= f.label(:professional_id) %></th>
-        <td><%= f.fields_for :assaignments do |assaignment| %>
-          
+        <th><%= f.label(:professional_Id) %></th>
+        <td><%= f.fields_for :assaignments do |assaignment| %>          
         <%= render "assaignment_fields", :f => assaignment %>
            <% end %>        
             <br> 
