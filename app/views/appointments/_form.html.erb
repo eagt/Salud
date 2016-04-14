@@ -10,12 +10,16 @@
       <tr>
         <th><%= f.label(:professional_id) %></th>
         <td><%= f.fields_for :assaignments do |assaignment| %>
-              <%= render "assaignment_fields", :f => assaignment %>
-            <% end %>        
-            <br>
+          
+        <%= render "assaignment_fields", :f => assaignment %>
+           <% end %>        
+            <br> 
+            
             <%= link_to_add_association 'Add Professional', f, :assaignments %>
+
+
         </td>
-        </tr>
+        </tr> 
         <tr>
         <th><%= f.label :comment %></th><br>
         <td><%= f.text_area :comment %></td> 

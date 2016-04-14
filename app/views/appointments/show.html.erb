@@ -21,6 +21,14 @@
 			   <th><%= t(:Creator) %></th>
 			   <td><%= @appointment.creator%></td>
 			  </tr>
+			  <tr>	
+			   <th><%= t(:Professional) %></th>
+			   <td><%= @appointment.professional_ids%></td>
+			  </tr>
+			   <tr>	
+			   <th><%= t(:Professional_name) %></th>
+			   <td><%= @appointment.professional.name%></td>
+			  </tr>
 	</tbody>
 </table>
 

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :assaigments
+  #resources :assaigments
   
   resources :clinics do
       member do
