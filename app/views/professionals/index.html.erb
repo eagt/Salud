@@ -1,10 +1,24 @@
+<!-- NOTE: THIS PAGE WILL BE SEEN BY DEVELOPERS ONLY WHILE 
+AS IN THE REAL WORLD EVERY PORFESSIONLA WILL HAVE ITS OWN LOGGIN AT WON'T BE ABLE TO 
+SEE OTHER PROFESIONALS DETAILS AS SUCH-->
+
+
+<tr>
+   <% if @is_clinic %>
+    <td>
+      <h2> Clinic <%= (@current_user.name )%></h2>
+      <h3>Professionals</h3>
+    </td>
+   <% else %>    
+     <td> 
+       <h3>Professionals</h3>
+     </td>
+    <%end%>
+ </tr>
 
 
 <%=  link_to("<< " + "Home", @current_user)  %>
-
-
-<h2>Professionals</h2>
-
+ <br>  <br>  <br> 
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
@@ -22,7 +36,7 @@
     <% @professionals.each do |professional| %>
       <tr>
         <td><%= professional.id %></td>
-        <td><%= @current_user.id %></td>
+        <td><%#= @current_user.id %></td>
         <td><%= professional.creator %></td>
         <td><%= professional.name %></td>
 

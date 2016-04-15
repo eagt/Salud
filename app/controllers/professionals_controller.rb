@@ -53,7 +53,7 @@ class ProfessionalsController < ApplicationController
     # Update the object
     if @professional.update_attributes(professional_params)
       # If update succeeds, redirect to the index action
-      flash[:notice] = "#{:professional} updated successfully "
+      flash[:notice] = "#{@professional.name} updated successfully "
       redirect_to([@current_user, @professional])
     else
       # If save fails, redisplay the from so user can fix problems

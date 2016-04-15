@@ -1,6 +1,21 @@
 
+<tr>
+   <% if !@is_clinic %>
+    <td>
+      <h2> Professional <%= (@current_user.name )%></h2>
+      <h3>Appointments/h3>
+    </td>
+   <% else %>     
+     <td> 
+       <h2> Clinic <%= (@current_user.name )%></h2>
+      <h3>Appointments</h3>
+     </td>
+    <%end%>
+ </tr>
 
-<h2> Appointments</h2>
+<br>
+<br>
+
  <div class="table-responsive">
             <table class="table table-striped">
   <thead>
