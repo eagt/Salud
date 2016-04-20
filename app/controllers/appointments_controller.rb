@@ -3,6 +3,8 @@ class AppointmentsController < ApplicationController
   before_action :current_user
   protect_from_forgery with: :null_session  # Set to be able to delete appointments with null_session
 
+
+
  layout "professional"
 
  
@@ -24,8 +26,8 @@ class AppointmentsController < ApplicationController
 
 
     def new    
+       #@appointment = @current_user.appointments.new({:creator => @current_user.name})
        @appointment = @current_user.appointments.new({:creator => @current_user.name})
-       redirect_to([@current_user, :appointments])
     end
   
 
@@ -121,6 +123,16 @@ class AppointmentsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    
+  #   def set_clinic
+  #    if @is_clinic && params[:professional_id]
+  #       @clinic = @current_user
+  #   elsif !@is_clini && params[:clinic_id]
+  #       @clinic = @current_user.clinic
+  #   end
+  # end
+
+
     def set_appointment
       @appointment = Appointment.find(params[:id])
     end
