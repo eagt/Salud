@@ -3,12 +3,14 @@ class ClinicsController < ApplicationController
   before_action :current_user
 
    layout "professional"
-  
+
   # Works for clinics on their own
   def index
+p '*' * 80
+
     if @is_clinic
     @clinics = Clinic.all
-   else 
+   else
     @clinics = @current_user.clinics
    end
   end
@@ -25,22 +27,22 @@ class ClinicsController < ApplicationController
          @clinic = @current_user.clinics.new(:creator => "Professional")
       else # kicks in when registering a new Clinic
          @clinic = Clinic.new(:creator => "Clinic")
-      end   
+      end
    end
 
  # Works for clinics on their own
-   def create               
+   def create
     # Instantiate a new object using form parameters
     @clinic = Clinic.new(clinic_params)
     if @clinic.save
       if !@is_clinic then Employment.create(:clinic => @clinic, :professional => @current_user, :creator => "Professional") end
-      # If save succeeds, redirect to the index action     
+      # If save succeeds, redirect to the index action
       flash[:notice] = "Clinic #{@clinic.name} created"
-      redirect_to([@current_user, :clinics])   
+      redirect_to([@current_user, :clinics])
     else
       # If save fails, redisplay the from so user can fix problems
       render('new')
-    end 
+    end
   end
 
 # Works for clinics on their own
@@ -62,7 +64,7 @@ class ClinicsController < ApplicationController
       render('edit')
     end
   end
- 
+
 # Works for clinics on their own
   def delete
     @clinic = Clinic.find(params[:id])
@@ -74,7 +76,7 @@ class ClinicsController < ApplicationController
     flash[:notice] = " CLinic #{@clinic.name} destroyed successfully. "
     redirect_to([@current_user, :clinics])
   end
-  
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -87,4 +89,3 @@ class ClinicsController < ApplicationController
       params.require(:clinic).permit(:id, :creator, :name)
     end
 end
-

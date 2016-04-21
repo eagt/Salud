@@ -8,17 +8,17 @@
   <table id="fields_table" class="display responsive" summary="Appointment form fields">
     <tbody>
       <tr>
-        <th><%= f.label(:professional_id) %></th>
-        <td><%= f.fields_for :assaignments do |assaignment| %>
-              <%= render "assaignment_fields", :f => assaignment %>
-            <% end %>        
+        <th><%#= f.label(:professional_id) %></th>
+        <td><%#= f.fields_for :assaignments do |assaignment| %>
+              <%#= render "assaignment_fields", :f => assaignment %>
+            <%# end %>
             <br>
-            <%= link_to_add_association 'Add Professional', f, :assaignments %>
+            <%#= link_to_add_association 'Add Professional', f, :assaignments %>
         </td>
         </tr>
         <tr>
         <th><%= f.label :comment %></th><br>
-        <td><%= f.text_area :comment %></td> 
+        <td><%= f.text_area :comment %></td>
         </tr><br>
         <tr>
         <th><%= f.label :date %> </th>
@@ -31,4 +31,3 @@
       </tbody>
     </table>
  </div>
-
