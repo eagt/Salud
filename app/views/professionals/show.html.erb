@@ -1,6 +1,15 @@
-
-
-<h4>Professional <%= @professional.name %></h4>
+<tr>
+   <% if @is_clinic %>
+    <td>
+      <h2> Clinic <%= (@current_user.name )%></h2>
+        <h3> Professional <%= (@professional.name )%></h3>
+    </td>
+   <% else %>
+     <td> 
+       <h2> Professional <%= (@professional.name )%></h2>
+     </td>
+    <%end%>
+ </tr>
 
 <div class="table-responsive">
   <table id="show_table" class="display responsive" summary="Company detail view">
@@ -30,7 +39,10 @@
 <%#= link_to 'Back', :back %> 
 <%= link_to 'Back', [@current_user, params[:controller]] %> |
 
- <%= link_to 'Appointments', professional_appointments_path(@professional) %> |
+ <%#= link_to 'Appointments', professional_appointments_path(@professional) %> <!-- This works if we only have professionals crearing appointments--> |
+
+  <%= link_to 'Appointments',[@current_user, :appointments, {:professional_id => @professional.id}] %>
+  
 
 <% if !@is_clinic %>
  <%= link_to 'Clinics', professional_clinics_path(@professional) %>

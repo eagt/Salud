@@ -1,54 +1,35 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
   before_action :current_user
+  protect_from_forgery with: :null_session  # Set to be able to delete appointments with null_session
+
 
 
  layout "professional"
 
  
-  def index
-    if params[:clinic_id]
-      @appointments = @current_user.appointments.where(clinic_id: params[:clinic_id])
-    elsif params[:professional_id]
-      @appointments = @current_user.appointments        
-    else
-      @appointments = @current_user.appointments
-    end    
+ def index
+  if @is_clinic && params[:professional_id] 
+    @appointments = Professional.find(params[:professional_id]).appointments.where(clinic_id: params[:clinic_id])
+    
+  elsif !@is_clinic && params[:clinic_id] 
+    @appointments = @current_user.appointments.where(clinic_id: params[:clinic_id])
+  else
+     @appointments = @current_user.appointments
   end
-
-
- # def index
- #  @clinic = Clinic.find(params[:clinic_id])
- #  @appointments = @clinic.appointments
- # end
-
+ end
 
   def show
     @appointment = Appointment.find(params[:id])
   end
 
-  # def show
-  #    @appointment = Appointment.find(params[:id])
-  #    @clinic = Clinic.find(params[:clinic_id])
 
 
-  #    @clinic = Clinic.find(@appointment.clinic)
-  # end
-
-  # GET /appointments/new
-
-    def new
-        @appointment = @current_user.appointments.new({:creator => @current_user.name})
-        #redirect_to([@current_user, :appointments]) #--> latest change
+    def new    
+       #@appointment = @current_user.appointments.new({:creator => @current_user.name})
+       @appointment = @current_user.appointments.new({:creator => @current_user.name})
     end
   
-  # def new
-  #  # @appointment = current_clinic.build
-  #    @clinic = Clinic.find(params[:clinic_id])
-  #    @appointment = @clinic.appointments.build
-  # end
-
- 
 
   def create
     # Instantiate a new object using form parameters
@@ -142,6 +123,16 @@ class AppointmentsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    
+  #   def set_clinic
+  #    if @is_clinic && params[:professional_id]
+  #       @clinic = @current_user
+  #   elsif !@is_clini && params[:clinic_id]
+  #       @clinic = @current_user.clinic
+  #   end
+  # end
+
+
     def set_appointment
       @appointment = Appointment.find(params[:id])
     end

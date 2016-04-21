@@ -22,7 +22,7 @@ class ClinicsController < ApplicationController
 # Works for clinics on their own
  def new
       if !@is_clinic # If the user is a professional and is creating a new clinic
-         @clinic = @current_user.clinics.new(:creator => "Professional")
+         @clinic = @current_user.clinics.new(:creator => @professional.id)
       else # kicks in when registering a new Clinic
          @clinic = Clinic.new(:creator => "Clinic")
       end   
@@ -33,7 +33,7 @@ class ClinicsController < ApplicationController
     # Instantiate a new object using form parameters
     @clinic = Clinic.new(clinic_params)
     if @clinic.save
-      if !@is_clinic then Employment.create(:clinic => @clinic, :professional => @current_user, :creator => "Professional") end
+      if !@is_clinic then Employment.create(:clinic => @clinic, :professional => @current_user, :creator => "@current_user") end
       # If save succeeds, redirect to the index action     
       flash[:notice] = "Clinic #{@clinic.name} created"
       redirect_to([@current_user, :clinics])   

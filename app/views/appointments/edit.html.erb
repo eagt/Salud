@@ -1,6 +1,17 @@
-<h1>Editing Appointment</h1>
+<h2>Editing Appointment</h2>
 
-<%= render 'form' %>
+<%= link_to("<< Return", [@current_user, params[:controller]], :class => 'back-link') %>
 
-<%= link_to(t(:show), [@current_user, @appointment], :class => 'action show') %> |
+<div class="appointments edit">
+
+  <%= form_for([@current_user, @appointment]) do |f| %>
+    <%= render(:partial => "form", :locals => {:f => f}) %>
+<br>
+<br>
+<div class="form-buttons">
+ <%= submit_tag("Update Appointment") %>
+</div>
+
 <%= link_to 'Back to Appointments', [@current_user, params[:controller]] %>
+<% end %>
+</div>
