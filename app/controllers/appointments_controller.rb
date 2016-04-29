@@ -2,8 +2,7 @@ class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
   before_action :current_user
   protect_from_forgery with: :null_session  # Set to be able to delete appointments with null_session
-
-
+  
 
  layout "professional"
 
@@ -25,24 +24,34 @@ class AppointmentsController < ApplicationController
 
 
 
-    def new    
-       #@appointment = @current_user.appointments.new({:creator => @current_user.name})
+    def new 
+      #@appointment = @current_user.appointments.new({:creator => @current_user.name})
        @appointment = @current_user.appointments.new({:creator => @current_user.name})
     end
   
 
   def create
-    # Instantiate a new object using form parameters
-    @appointment = Appointment.new(appointment_params)
-    if @appointment.save
-      @current_user.appointments << @appointment
-      # If save succeeds, redirect to the index action
-      flash[:notice] = "Appointment #{@appointment.id} created successfully " 
-      redirect_to([@current_user, :appointments]) 
-    else
-      # If save fails, redisplay the from so user can fix problems
-      render('new') 
+    begin
+        @appointment = Appointment.create(appointment_params)
+      # @current_user.appointments << @appointment    ---- THIS WAS REMOVED FOR A WHILE, BUT IT WAS WORKING WITH IT.
+       flash[:notice] = "Appointment #{@appointment.id} created successfully " 
+       redirect_to([@current_user, :appointments]) 
+      rescue Exception => e # Catch exceptions      
+      @appointment = @current_user.appointments.new(appointment_params)
+      flash[:notice] = " Can't be added. " +  e.to_s 
+      render ("new")
     end
+    # Instantiate a new object using form parameters
+    #@appointment = Appointment.new(appointment_params)
+    # if @appointment.save
+    #   @current_user.appointments << @appointment
+    #   # If save succeeds, redirect to the index action
+    #   flash[:notice] = "Appointment #{@appointment.id} created successfully " 
+    #   redirect_to([@current_user, :appointments]) 
+    # else
+    #   # If save fails, redisplay the from so user can fix problems
+    #   render('new') 
+    # end
   end
 
 
@@ -137,7 +146,8 @@ class AppointmentsController < ApplicationController
       @appointment = Appointment.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+
+        # Never trust parameters from the scary internet, only allow the white list through.
     def appointment_params
       params.require(:appointment).permit(:id, :clinic_id, :comment, :date, :creator, assaignments_attributes: [:id, :professional_id, :creator, :_destroy])
     end

@@ -6,7 +6,8 @@ class Assaignment < ActiveRecord::Base
   accepts_nested_attributes_for :professional
 
   validates :professional_id, presence: true, numericality: { only_integer: true }
-		  #:uniqueness=>{:message=>"Cannot repeat the professional_id"}
+	
+  #validates_uniqueness_of :professional_id	  #:uniqueness => {:message=>"Cannot repeat the professional_id"}
 
 #validates_associated :professional
 #validate :prof_arr
@@ -14,16 +15,7 @@ class Assaignment < ActiveRecord::Base
 
 private
 
-# Method to allow to enter only professionals that belongs to this clinic
-    # def set_professional
-    #    c = Clinic.find(1)
-    #    p = c.professionals.ids
-    #    if p.include? professional_id
-    #         professional_id = :professional_id
-    #    else
-    #      puts " can't be added"
-    #    end
-    # end
+
 
 
 
@@ -38,7 +30,7 @@ private
   # end
 
 # Method so verify that a professional can't be entered twice
-  # def pro_id(professional_id = :professional_id)
+  # def pro_id
   # 	#id = @current_user.id
   # 	c = Clinic.find(1)
   # 	p = c.professionals.ids
