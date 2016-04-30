@@ -22,9 +22,9 @@ class ProfessionalsController < ApplicationController
 
   def new    
       if @is_clinic # If the user is a clinic and is creating a new  professional
-         @professional = @current_user.professionals.new(:creator => @current_user.id)
+         @professional = @current_user.professionals.new(:creator => @current_user.name)
       else # kicks in when registering a new Professional
-        @professional = Professional.new(:creator => "Professional")
+        @professional = Professional.new(:creator => "Self")
       end    
   end
 
@@ -35,7 +35,7 @@ class ProfessionalsController < ApplicationController
       # THIS ONE IS WORKING PROPERLY ...   if @is_clinic then Employment.create(:clinic => @current_user, :professional => @professional, :creator => "Clinic") end
        if @is_clinic then Employment.create(:clinic => @current_user, :professional => @professional, :creator => "@current_user") end
       # If save succeeds, redirect to the index action
-      flash[:notice] = "Professional #{:professional} created "
+      flash[:notice] = "Professional #{@professional.name} created "
       redirect_to([@current_user, :professionals]) 
       else
       # If save fails, redisplay the form so user can fix problems

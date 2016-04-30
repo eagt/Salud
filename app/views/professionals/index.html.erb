@@ -1,6 +1,5 @@
-<!-- NOTE: THIS PAGE WILL BE SEEN BY DEVELOPERS ONLY WHILE 
-AS IN THE REAL WORLD EVERY PORFESSIONLA WILL HAVE ITS OWN LOGGIN AT WON'T BE ABLE TO 
-SEE OTHER PROFESIONALS DETAILS AS SUCH-->
+<!-- NOTE: THIS PAGE WILL BE SEEN BY DEVELOPERS ONLY.
+IN THE REAL WORLD EVERY PORFESSIONLA WILL HAVE ITS OWN LOGGIN AT WON'T BE ABLE TO SEE OTHER PROFESIONALS DETAILS AS SUCH-->
 
 
 <tr>
@@ -23,10 +22,10 @@ SEE OTHER PROFESIONALS DETAILS AS SUCH-->
   <table class="table table-striped">
     <thead>
     <tr>
-        <th>ID</th>
-        <th>Clinic ID</th>
-        <th>Creator</th>
-        <th>Name</th>
+        <th>Prof ID</th>
+        <th>Professional Name</th>
+        <th>Created by</th>
+        
         <th>Actions</th>
       <th colspan="4"></th>
     </tr>
@@ -36,14 +35,17 @@ SEE OTHER PROFESIONALS DETAILS AS SUCH-->
     <% @professionals.each do |professional| %>
       <tr>
         <td><%= professional.id %></td>
-        <td><%#= @current_user.id %></td>
-        <td><%= professional.creator %></td>
         <td><%= professional.name %></td>
-
+        <td><%= professional.creator %></td>
         <td><%= link_to(t(:show), [@current_user, professional], :class => 'action show') %></td>
         <td><%= link_to(t(:edit), [:edit, @current_user, professional], :class => 'action edit') %></td>
+        
+          <td><%#= link_to 'Edit', edit_professional_path(professional) %></td>
+
+
         <td><%#= link_to(t(:delete), [:delete, @current_user, professional], :class => 'action delete') %></td>
         <td><%#= link_to 'Destroy', [@current_user, professional], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
 
          <td><%= link_to('Delete', [:delete, @current_user, professional], :class => 'action delete') %></td>
       </tr>
