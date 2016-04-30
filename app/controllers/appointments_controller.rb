@@ -33,7 +33,7 @@ class AppointmentsController < ApplicationController
   def create
     begin
         @appointment = Appointment.create(appointment_params)
-      # @current_user.appointments << @appointment    ---- THIS WAS REMOVED FOR A WHILE, BUT IT WAS WORKING WITH IT.
+       @current_user.appointments << @appointment    
        flash[:notice] = "Appointment #{@appointment.id} created successfully " 
        redirect_to([@current_user, :appointments]) 
       rescue Exception => e # Catch exceptions      
