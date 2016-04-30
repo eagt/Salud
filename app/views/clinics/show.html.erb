@@ -2,7 +2,7 @@
 <tr>
    <% if @is_clinic %>
     <td>
-      <h3> Clinic <%= (@clinic.name )%></h3>
+      <h2> Clinic <%= (@clinic.name )%></h2>
     </td>
    <% else %>
      <td> 
@@ -42,11 +42,12 @@
  </div>
 
 
-<%= link_to 'Edit', edit_clinic_path(@clinic) %> |
+<%= link_to(t(:edit), [:edit, @current_user, @clinic], :class => 'action edit') %> |
+ 
 <%= link_to 'Back', :back %> |
 
 <%#= link_to 'Back to CLinics', clinics_path %>  <!-- This will take us to the list of clinics only in development. Logic will need to be defined depending where was it call from -->
- <%= link_to 'Appointments', clinic_appointments_path(@clinic) %> |
+ <%= link_to('Appointments', @is_clinic ? [@clinic, :appointments] : [@current_user, :appointments, {:clinic_id => @clinic.id}]) %> |
  <%#= link_to 'Professionals', clinic_professionals_path(@clinic) %>
 
  <% if @is_clinic %>

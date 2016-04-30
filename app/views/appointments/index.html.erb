@@ -3,11 +3,11 @@
    <% if !@is_clinic %>
     <td>
       <h2> Professional <%= (@current_user.name )%></h2>
-      <h3>Appointments/h3>
+      <h3>Appointments</h3>
     </td>
    <% else %>     
      <td> 
-       <h2> Clinic <%= (@current_user.name )%></h2>
+      <h2> Clinic <%= (@current_user.name )%></h2>
       <h3>Appointments</h3>
      </td>
     <%end%>
@@ -23,7 +23,7 @@
       <th>Clinic</th>
       <th>Comment</th>
       <th>Date</th>
-      <th>Creator</th>
+      <th>Created by</th>
       <th>Professionals</th>
 
       <th>Actions</th>
@@ -34,7 +34,7 @@
   <tbody>
     <% @appointments.each do |appointment| %>
       <tr>
-        <td><%#= appointment.clinic.name %></td>
+        <td><%= appointment.clinic.name %></td>
         <td><%= appointment.comment %></td>
         <td><%= appointment.date %></td>
         <td><%= appointment.creator %></td>

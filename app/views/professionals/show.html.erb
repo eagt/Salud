@@ -39,13 +39,14 @@
 <%#= link_to 'Back', :back %> 
 <%= link_to 'Back', [@current_user, params[:controller]] %> |
 
- <%#= link_to 'Appointments', professional_appointments_path(@professional) %> <!-- This works if we only have professionals crearing appointments--> |
+ <%= link_to 'Appointments', professional_appointments_path(@professional) %> |  <!-- This works if we only have professionals crearing appointments--> 
 
-  <%= link_to 'Appointments',[@current_user, :appointments, {:professional_id => @professional.id}] %>
+  <%#= link_to 'Appointments',[@current_user, :appointments, {:professional_id => @professional.id}] %>
   
 
+ 
 <% if !@is_clinic %>
- <%= link_to 'Clinics', professional_clinics_path(@professional) %>
+<%= link_to 'Clinics', professional_clinics_path(@professional) %>
 <% else %>
 <% end %> 
  

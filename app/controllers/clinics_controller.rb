@@ -22,9 +22,9 @@ class ClinicsController < ApplicationController
 # Works for clinics on their own
  def new
       if !@is_clinic # If the user is a professional and is creating a new clinic
-         @clinic = @current_user.clinics.new(:creator => @professional.id)
+         @clinic = @current_user.clinics.new(:creator => @current_user.name)
       else # kicks in when registering a new Clinic
-         @clinic = Clinic.new(:creator => "Clinic")
+         @clinic = Clinic.new(:creator => "Self")
       end   
    end
 
@@ -71,7 +71,7 @@ class ClinicsController < ApplicationController
 # Works for clinics on their own
   def destroy
     clinic = Clinic.find(params[:id]).destroy
-    flash[:notice] = " CLinic #{@clinic.name} destroyed successfully. "
+    flash[:notice] = " Clinic #{@clinic.name} destroyed successfully. "
     redirect_to([@current_user, :clinics])
   end
   

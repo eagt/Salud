@@ -10,16 +10,41 @@
     <tbody>
       <tr>
         <th><%= f.label(:professional_Id) %></th>
-        <td><%= f.fields_for :assaignments do |assaignment| %>          
-        <%= render "assaignment_fields", :f => assaignment %>
-           <% end %>        
+        <td>  if @is_clinic  
+        <%= f.fields_for :assaignments do |assaignment| %>          
+              <%= render "assaignment_fields", :f => assaignment %>
+                 <% end %>        
+                  <br> 
+                  
+              <%= link_to_add_association 'Add Professional', f, :assaignments %>
+              <%= f.hidden_field(:clinic_id, :value => @current_user.id) %>
+      </td>
+
+
+
+
+
+
+
+
+
+
+
+     <!--    <td><%#= f.fields_for :assaignments do |assaignment| %>          
+        <%#= render "assaignment_fields", :f => assaignment %>
+            end %>        
             <br> 
             
-            <%= link_to_add_association 'Add Professional', f, :assaignments %>
-             <%= f.hidden_field(:clinic_id, :value => @current_user.id) %>
+            <%#= link_to_add_association 'Add Professional', f, :assaignments %>
+             <%#= f.hidden_field(:clinic_id, :value => @current_user.id) %>
+        </td> -->
 
-        </td>
+
+  
         </tr> 
+
+
+
         <tr>
         <th><%= f.label :comment %></th><br>
         <td><%= f.text_area :comment %></td> 
