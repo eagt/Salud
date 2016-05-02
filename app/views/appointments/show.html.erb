@@ -21,6 +21,10 @@
 			   <th><%= t(:Creator) %></th>
 			   <td><%= @appointment.creator%></td>
 			  </tr>
+			   <tr>	
+			   <th><%= t(:Client) %></th>
+			   <td><%= @appointment.client.id%></td>
+			  </tr>
 
 			  <!-- This will show professionals ids in an array] -->
 			  <tr>	
@@ -28,7 +32,7 @@
 			   <td><%= @appointment.professional_ids%></td>
 			  </tr>
 
-			  <!-- This will show professional/s names and its/their ID depending on how many professionals are booked for this appointment. This is iterating over an array-->
+			  <!-- This will show professional/s name/s and its/their ID/s depending on how many professionals are booked for this appointment. This is iterating over an array-->
 			  
 			   <tr>	
 			   <% @appointment.professionals.each do |professional| %> 

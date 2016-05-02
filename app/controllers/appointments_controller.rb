@@ -32,7 +32,7 @@ class AppointmentsController < ApplicationController
 
   def create
     begin
-        @appointment = Appointment.create(appointment_params)
+       @appointment = Appointment.create(appointment_params)
        @current_user.appointments << @appointment    
        flash[:notice] = "Appointment #{@appointment.id} created successfully " 
        redirect_to([@current_user, :appointments]) 
@@ -41,30 +41,8 @@ class AppointmentsController < ApplicationController
       flash[:notice] = " Can't be added. " +  e.to_s 
       render ("new")
     end
-    # Instantiate a new object using form parameters
-    #@appointment = Appointment.new(appointment_params)
-    # if @appointment.save
-    #   @current_user.appointments << @appointment
-    #   # If save succeeds, redirect to the index action
-    #   flash[:notice] = "Appointment #{@appointment.id} created successfully " 
-    #   redirect_to([@current_user, :appointments]) 
-    # else
-    #   # If save fails, redisplay the from so user can fix problems
-    #   render('new') 
-    # end
   end
 
-
-  # def create
-  #   @clinic = Clinic.find(params[:clinic_id])
-  #   @appointment = @clinic.appointments.create(appointment_params)
-  #      if @appointment.save
-  #     flash[:notice] = " Successfully created Appointment."
-  #       redirect_to clinic_path (@appointment)
-  #     end   
-  # end
-
-   # GET /appointments/1/edit
 
   def edit
    @appointment = Appointment.find(params[:id])
@@ -91,24 +69,6 @@ class AppointmentsController < ApplicationController
       render('edit')
     end
   end
-
-
-  # def update
-  #    @clinic = Clinic.find(params[:clinic_id])
-  #    @appointment = @clinic.appointments.find(params[:id])
-  #    if @appointment.update_attributes(appointment_params)
-  #      flash[:notice] = "Successfully updated appointment."
-  #       redirect_to appointment_url(@appointment)
-  #    else
-  #    render :action => 'edit'         
-  #   end
-  # end
-
-#{@subject.name}
-
-  # DELETE /appointments/1
-  # DELETE /appointments/1.json
-
 
 
   def delete
@@ -149,6 +109,6 @@ class AppointmentsController < ApplicationController
 
         # Never trust parameters from the scary internet, only allow the white list through.
     def appointment_params
-      params.require(:appointment).permit(:id, :clinic_id, :comment, :date, :creator, assaignments_attributes: [:id, :professional_id, :creator, :_destroy])
+      params.require(:appointment).permit(:id, :clinic_id, :client_id, :comment, :date, :creator, assaignments_attributes: [:id, :professional_id, :creator, :_destroy])
     end
 end

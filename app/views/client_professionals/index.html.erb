@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Client Professionals</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Professional</th>
+      <th>Client</th>
+      <th>Name</th>
+      <th>Creator</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @client_professionals.each do |client_professional| %>
+      <tr>
+        <td><%= client_professional.professional %></td>
+        <td><%= client_professional.client %></td>
+        <td><%= client_professional.name %></td>
+        <td><%= client_professional.creator %></td>
+        <td><%= link_to 'Show', client_professional %></td>
+        <td><%= link_to 'Edit', edit_client_professional_path(client_professional) %></td>
+        <td><%= link_to 'Destroy', client_professional, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Client professional', new_client_professional_path %>

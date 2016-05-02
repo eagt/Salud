@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  professional_id: 
+  client_id: 
+  name: MyString
+  creator: MyString
+
+two:
+  professional_id: 
+  client_id: 
+  name: MyString
+  creator: MyString

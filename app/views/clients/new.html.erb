@@ -1,0 +1,38 @@
+<!-- <h1>New Client</h1>
+
+<%#= render 'form' %>
+
+<%#= link_to 'Back', clients_path %> -->
+
+
+
+<%= link_to("<< Return ", [@current_user, params[:controller]], :class => 'back-link') %>
+
+<div class="appointments new">
+
+<br>
+<tr>
+   <% if @is_clinic %>
+    <td>
+      <h2><%= (@current_user.name )%></h2>
+       <h3> Create New Client  <%#= (@clinic.name )%></h3>
+    </td>
+   <% else %>
+     <td> 
+       <h2> Professional <%= (@current_user.name )%></h2>
+       <h3> Create New Client <%#= (@clinic.name )%></h3>
+     </td>
+    <%end%>
+ </tr>
+
+<br>
+  <%= form_for([@current_user, @client]) do |f| %>
+    <%= render(:partial => "form", :locals => {:f => f}) %>
+<br>
+<br>
+    <div class="form-buttons">
+      <%= submit_tag(" Create New Client") %>
+    </div>
+  <% end %>
+
+</div>
