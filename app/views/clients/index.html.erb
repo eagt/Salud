@@ -3,12 +3,12 @@
    <% if !@is_clinic %>
     <td>
       <h2> Professional <%= (@current_user.name )%></h2>
-      <h3>Appointments</h3>
+      <h3>Clients</h3>
     </td>
    <% else %>     
      <td> 
       <h2> Clinic <%= (@current_user.name )%></h2>
-      <h3>Appointments</h3>
+      <h3>Clients</h3>
      </td>
     <%end%>
  </tr>
@@ -20,12 +20,11 @@
             <table class="table table-striped">
   <thead>
     <tr>
-      <th>Clinic</th>
-      <th>Comment</th>
-      <th>Date</th>
+      <th>Client Id</th>
+      <th>Name</th>
       <th>Created by</th>
-      <th>Professionals</th>
-      <th>Client</th>
+
+<!--       <th>Appointments</th> -->
 
       <th>Actions</th>
       <th colspan="3"></th>
@@ -33,18 +32,17 @@
   </thead>
 
   <tbody>
-    <% @appointments.each do |appointment| %>
+    <% @clients.each do |client| %>
       <tr>
-        <td><%= appointment.clinic_id ? appointment.clinic.name : 'Awaiting Clinic' %></td>
-        <td><%= appointment.comment %></td>
-        <td><%= appointment.date %></td>
-        <td><%= appointment.creator %></td>
-        <td><%= appointment.professionals.size %></td>
-         <td><%= appointment.client_id ? appointment.client.name : 'Awaiting Client' %></td>
+        <td><%= client.id %></td>
+        <td><%= client.name %></td>
+        <td><%= client.creator %></td>
+        <!-- 
+        <td><%#= client.appointments.size %></td> -->
 
-        <td><%= link_to(t(:show), [@current_user, appointment], :class => 'action show') %></td>
-        <td><%= link_to(t(:edit), [:edit, @current_user, appointment], :class => 'action edit') %></td>
-        <td><%= link_to 'Destroy', [@current_user, appointment], method: :delete, data: { confirm: 'Are you sure?' } %></td> 
+        <td><%= link_to(t(:show), [@current_user, client], :class => 'action show') %></td>
+        <td><%= link_to(t(:edit), [:edit, @current_user, client], :class => 'action edit') %></td>
+        <td><%= link_to 'Destroy', [@current_user, client], method: :delete, data: { confirm: 'Are you sure?' } %></td> 
       </tr>
     <% end %>
   </tbody>
@@ -53,7 +51,7 @@
 
 <br>
 
-<%= link_to('New Appointment', [:new, @current_user, params[:controller].singularize], :class => 'action new') %>  
+<%= link_to('New Client', [:new, @current_user, params[:controller].singularize], :class => 'action new') %>  
 <br>
  <%#= link_to 'New Appointment', {[new_@current_user_appointment], :class => 'action new'} %>
 <%= link_to 'Clinics', clinics_path %>

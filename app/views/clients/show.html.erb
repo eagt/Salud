@@ -1,0 +1,56 @@
+
+<tr>
+   <% if @is_clinic %>
+    <td>
+      <h2> Clinic <%= (@current_user.name )%></h2>
+        <h3> Client <%= (@client.name )%></h3>
+    </td>
+   <% else %>
+     <td> 
+       <h2> Professional <%= (@current_user.name )%></h2>
+        <h3> Client <%= (@client.name )%></h3></td>
+    <%end%>
+ </tr>
+
+ <div class="table-responsive">
+  <table id="show_table" class="display responsive" summary="Appointment details view">
+
+ 	<tbody>
+      	<br>
+			  <tr>	
+			  	<th><%= t(:Clinic) %></th>
+				<td><%#= @client.clinic.name%></td>  <!-- IF THERE IS CLINIC PUT IT, OTHERWISE DON'T-->
+			  </tr>
+			  <tr>	
+			   <th><%= t(:Name) %></th>
+			   <td><%= @client.name%></td>
+			  </tr>
+			  <tr>	
+			   <th><%= t(:Creator) %></th>
+			   <td><%= @client.creator%></td>
+			  </tr>
+			  <tr>	
+			   <th><%#= t(:Professional) %></th>
+			   <td><%#= @client.professional_ids%></td> <!-- IF THERE IS PROFESSIONAL PUT IT, OTHERWISE DON'T-->
+			  </tr>
+
+			  <!-- This will show professional/s names and its/their ID depending on how many professionals are booked for this appointment. This is iterating over an array-->
+			  
+			 <!--   <tr>	
+			   % @appointment.professionals.each do |professional| %> 
+			   	<th><%#= "Professional Name:" %></th>
+			    <td><%#= professional.name  %></td> 
+               	<th><%#= "Professional ID:" %></th>
+                <td><%#= professional.id.to_s %></td>
+               </tr>            
+				% end %>  -->
+			
+	</tbody>
+</table>
+<br>
+<br>
+ <%#= link_to('Appointments', @is_clinic ? [@clinic, :appointments] : [@current_user, :appointments, {:clinic_id => @clinic.id}]) %>
+<%= link_to(t(:edit), [:edit, @current_user, @client], :class => 'action edit') %> |
+<%= link_to 'Back to Clients', [@current_user, params[:controller]] %>
+<%#= link_to('Appointments',  @is_clinic? [@current_user, :appointments, {:professional_id => @professional.id}] : [@professional, :appointments])%> |
+

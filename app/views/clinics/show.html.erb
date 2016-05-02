@@ -48,6 +48,8 @@
 
 <%#= link_to 'Back to CLinics', clinics_path %>  <!-- This will take us to the list of clinics only in development. Logic will need to be defined depending where was it call from -->
  <%= link_to('Appointments', @is_clinic ? [@clinic, :appointments] : [@current_user, :appointments, {:clinic_id => @clinic.id}]) %> |
+
+  <%= link_to('Clients', @is_clinic ? [@clinic, :clients] : [@current_user, :clients, {:clinic_id => @clinic.id}]) %> |
  <%#= link_to 'Professionals', clinic_professionals_path(@clinic) %>
 
  <% if @is_clinic %>

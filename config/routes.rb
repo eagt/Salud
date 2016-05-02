@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   
- 
   
   resources :clinics do
       member do
@@ -25,7 +24,17 @@ Rails.application.routes.draw do
        member do
           get :delete
         end
-      end   
+      end  
+      resources :client_professionals do
+      member do
+          get :delete
+        end
+      end 
+      resources :clients do
+       member do
+          get :delete
+        end
+      end
   end
 
 
@@ -53,7 +62,17 @@ Rails.application.routes.draw do
         member do
           get :delete
         end
-    end    
+     end 
+     resources :client_professionals do
+      member do
+          get :delete
+        end
+      end 
+      resources :clients do
+       member do
+          get :delete
+        end
+      end   
    end
    
 

@@ -1,0 +1,29 @@
+
+<div class="table-responsive">
+  <table id="fields_table" class="display responsive" summary="Appointment form fields">
+    <tbody>
+        <tr>
+        <th><%= f.label :Name %></th>
+        <td><%= f.text_field :name %></td> 
+        </tr> 
+        <tr> 
+        <th><%= f.label :creator %></th>
+        <td><%=  f.text_field :creator %></td>
+        </tr>
+    </tbody>
+  </table>
+ </div>
+<!-- 
+ <%#= simple_form_for(@client) do |f| %>
+  <%#= f.error_notification %>
+
+  <div class="form-inputs">
+    <%#= f.association :clinic %>
+    <%#= f.input :name %>
+    <%#= f.input :creator %>
+  </div>
+
+  <div class="form-actions">
+    <%#= f.button :submit %>
+  </div>
+end %> -->

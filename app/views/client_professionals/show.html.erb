@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Professional:</strong>
+  <%= @client_professional.professional %>
+</p>
+
+<p>
+  <strong>Client:</strong>
+  <%= @client_professional.client %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @client_professional.name %>
+</p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @client_professional.creator %>
+</p>
+
+<%= link_to 'Edit', edit_client_professional_path(@client_professional) %> |
+<%= link_to 'Back', client_professionals_path %>

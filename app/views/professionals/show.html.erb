@@ -34,15 +34,17 @@
  </div>
 
 
+
+
 <%= link_to(t(:edit), [:edit, @current_user, @professional], :class => 'action edit') %> |
 
 <%#= link_to 'Back', :back %> 
 <%= link_to 'Back', [@current_user, params[:controller]] %> |
 
- <%= link_to 'Appointments', professional_appointments_path(@professional) %> |  <!-- This works if we only have professionals crearing appointments--> 
+ <%= link_to('Appointments',  @is_clinic? [@current_user, :appointments, {:professional_id => @professional.id}] : [@professional, :appointments])%> |
 
-  <%#= link_to 'Appointments',[@current_user, :appointments, {:professional_id => @professional.id}] %>
-  
+<%= link_to(' Clients' ,  @is_clinic ? [@current_user, :clients, {:professional_id => @professional.id}] : [@professional, :clients]) %></th> |
+           
 
  
 <% if !@is_clinic %>

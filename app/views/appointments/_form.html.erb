@@ -1,50 +1,39 @@
   
-  <!--  <div id="error_explanation">
-      <h2><%#= pluralize(@appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
-  </div> -->
-
-
-
+  
 <div class="table-responsive">
   <table id="fields_table" class="display responsive" summary="Appointment form fields">
     <tbody>
       <tr>
         <th><%= f.label(:professional_Id) %></th>
-        <td>  if @is_clinic  
-        <%= f.fields_for :assaignments do |assaignment| %>          
+        <td>  <% if @is_clinic %>
+              <%= f.fields_for :assaignments do |assaignment| %>          
               <%= render "assaignment_fields", :f => assaignment %>
-                 <% end %>        
-                  <br> 
-                  
+                 <% end %>   
               <%= link_to_add_association 'Add Professional', f, :assaignments %>
               <%= f.hidden_field(:clinic_id, :value => @current_user.id) %>
-      </td>
-
-
-
-
-
-
-
-
-
-
-
-     <!--    <td><%#= f.fields_for :assaignments do |assaignment| %>          
-        <%#= render "assaignment_fields", :f => assaignment %>
-            end %>        
-            <br> 
-            
-            <%#= link_to_add_association 'Add Professional', f, :assaignments %>
-             <%#= f.hidden_field(:clinic_id, :value => @current_user.id) %>
-        </td> -->
-
-
-  
+              <% else %>
+               <%= @current_user.name %>
+              <%end%>
+        </td>
         </tr> 
+        <tr>
+        <th><%= f.label :clinic_id%></th><br>
 
+        <td><% if @is_clinic %>
+               <%= @current_user.name %>
+               <%else %>
+               <%= f.text_field :clinic_id %>
+               <%end%>
+        </td> <!-- Me gustaria hacer esto con un render -->
+        </tr><br>
+        <tr>
+        <th><%= f.label :client_id %></th><br>
+        <td><%= f.text_field :client_id %></td>
 
+        <!-- CONDITIONAL IS NEEDED TO DECIDE IF IT CAN BE ADDED OR NOT, here or in the models--> 
+        
 
+        </tr><br>
         <tr>
         <th><%= f.label :comment %></th><br>
         <td><%= f.text_area :comment %></td> 

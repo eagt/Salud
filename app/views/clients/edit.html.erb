@@ -1,0 +1,25 @@
+
+<h2>Editing Client</h2>
+
+<%= link_to("<< Return", [@current_user, params[:controller]], :class => 'back-link') %>
+
+<div class="appointments edit">
+
+  <%= form_for([@current_user, @appointment]) do |f| %>
+    <%= render(:partial => "form", :locals => {:f => f}) %>
+<br>
+<br>
+<div class="form-buttons">
+ <%= submit_tag("Update Appointment") %>
+</div>
+
+<%= link_to 'Back to Appointments', [@current_user, params[:controller]] %>
+<% end %>
+</div>
+
+<!-- <h1>Editing Client</h1>
+
+<%#= render 'form' %>
+
+<%#= link_to 'Show', @client %> |
+<%#= link_to 'Back', clients_path %> -->
