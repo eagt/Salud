@@ -11,7 +11,7 @@ gem 'sass-rails', '~> 5.0'
 # to your CSS code  when it is compiled.
 gem 'autoprefixer-rails'
 
-gem 'rubocop', '~> 0.41.1', require: false
+gem 'rubocop', '~> 0.54.0', require: false
 # Use Uglifier as compressor for JavaScript assets
 #gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
