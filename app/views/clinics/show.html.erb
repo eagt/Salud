@@ -1,23 +1,20 @@
-<br>
+
+<% @page_title = " Show Clinic" %>
 <tr>
    <% if @is_clinic %>
     <td>
-      <h2> Clinic <%= (@clinic.name )%></h2>
+    <br>
+      <h2> Clinic Details </h2>
     </td>
    <% else %>
      <td> 
-       <h2> Professional <%= (@current_user.name )%></h2>
-       <h3> Clinic <%= (@clinic.name )%></h3>
+     <br>
+       <h4> Clinic Details </h4>
+       <h2> Professional: <%= (@current_user.name )%></h2>
+       
      </td>
     <%end%>
  </tr>
-
-<br>
-
-
-
-<%=  link_to("<< " + "Home", @current_user)  %>
-
 
 <div class="table-responsive">
   <table id="show_table" class="display responsive" summary="Company detail view">
@@ -37,6 +34,22 @@
 			<th><%= t(:creator) %></th>
 			<td><%= @clinic.creator%></td>
 		 </tr>
+
+     <tr>
+      <th><%= link_to('Professional'.pluralize(locale), @is_clinic ? [@clinic, :professionals] : [@current_user]) %></th>
+      <td><%= @is_clnic ? @clinic.professionals.size : "1" %></td> 
+    </tr>
+
+     <tr>
+      <th><%= link_to('Appointments', @is_clinic ? [@clinic, :appointments] : [@current_user, :appointments, {:clinic_id => @clinic.id}]) %></th>
+      <td><%= @is_clinic ? @clinic.appointments.size : @current_user.appointments.select {|s| s.clinic_id == params[:id].to_i}.size %></td>
+    </tr>
+
+    <tr>
+    <th><%= link_to('Clients', @is_clinic ? [@clinic, :clients] : [@current_user, :clients, {:clinic_id => @clinic.id}]) %></th>
+    <td><%= @is_clinic  ? @clinic.clients.size : @current_user.clients.select {|s| s.clinic_id == params[:id].to_i}.size %></td>
+    </tr>
+
 	</tbody>
   </table>
  </div>
@@ -44,15 +57,9 @@
 
 <%= link_to(t(:edit), [:edit, @current_user, @clinic], :class => 'action edit') %> |
  
-<%= link_to 'Back', :back %> |
+<%= link_to 'Back', :back %> | 
 
-<%#= link_to 'Back to CLinics', clinics_path %>  <!-- This will take us to the list of clinics only in development. Logic will need to be defined depending where was it call from -->
- <%= link_to('Appointments', @is_clinic ? [@clinic, :appointments] : [@current_user, :appointments, {:clinic_id => @clinic.id}]) %> |
-
-  <%= link_to('Clients', @is_clinic ? [@clinic, :clients] : [@current_user, :clients, {:clinic_id => @clinic.id}]) %> |
- <%#= link_to 'Professionals', clinic_professionals_path(@clinic) %>
-
- <% if @is_clinic %>
+<% if @is_clinic %>
 <%= link_to 'Professionals', clinic_professionals_path(@clinic) %>
 <% else %>
 <% end %> 

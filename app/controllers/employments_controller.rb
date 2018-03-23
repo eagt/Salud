@@ -69,6 +69,6 @@ class EmploymentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def employment_params
-      params.require(:employment).permit(:professional_id, :clinic_id, :creator)
+      params.require(:employment).permit(:professional_id, :clinic_id, :creator, :is_active)
     end
 end

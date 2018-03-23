@@ -72,16 +72,24 @@ ActiveRecord::Schema.define(version: 20160501013126) do
   create_table "clinics", force: :cascade do |t|
     t.string   "name"
     t.string   "creator"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "email",      default: "@",   null: false
+    t.boolean  "acc_active", default: false
+    t.boolean  "is_virtual", default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
+
+  add_index "clinics", ["acc_active"], name: "index_clinics_on_acc_active"
+  add_index "clinics", ["is_virtual"], name: "index_clinics_on_is_virtual"
+  add_index "clinics", ["name"], name: "index_clinics_on_name"
 
   create_table "employments", force: :cascade do |t|
     t.integer  "professional_id"
     t.integer  "clinic_id"
     t.string   "creator"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.boolean  "is_active",       default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   add_index "employments", ["clinic_id"], name: "index_employments_on_clinic_id"
@@ -90,8 +98,16 @@ ActiveRecord::Schema.define(version: 20160501013126) do
   create_table "professionals", force: :cascade do |t|
     t.string   "name"
     t.string   "creator"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "email",      default: "@",   null: false
+    t.boolean  "acc_active", default: false
+    t.boolean  "is_virtual", default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
+
+  add_index "professionals", ["acc_active"], name: "index_professionals_on_acc_active"
+  add_index "professionals", ["creator"], name: "index_professionals_on_creator"
+  add_index "professionals", ["is_virtual"], name: "index_professionals_on_is_virtual"
+  add_index "professionals", ["name"], name: "index_professionals_on_name"
 
 end

@@ -1,35 +1,24 @@
-<!-- <h1>Editing Professional</h1>
+<% @page_title = " Edit Professional"%>
 
-<%#= render 'form' %> -->
-
-<% @page_title = t(:professional).pluralize(locale) %>
-
-<br>
 <tr>
-   <% if @is_clinic %>
-    <td>
-      <h3> Clinic <%= (@current_user.name )%></h3>
-        <h3> Edit Professional <%= (@professional.name )%></h3>
-    </td>
-   <% else %>
-     <td> 
-       <h3> Edit Professional <%= (@professional.name )%></h3>
-     </td>
+    <% if @is_clinic %>
+      <td>
+        <br>
+          <h4> Edit Professional </h4>
+          <h2> Clinic: <%= (@current_user.name)%></h2>       
+      </td>
+    <% else %>
+      <td> 
+          <h3> Edit Professional <%= (@professional.name)%></h3>
+      </td>
     <%end%>
- </tr>
-<br>
+    </tr>
+ 
 
-
-<%= link_to("<<  Return ", [@current_user, params[:controller]], :class => 'back-link') %>
-<br>
-<br>
+<br><br>
 
 <div class="professionals edit">
   <%= form_for([@current_user, @professional]) do |f| %>
       <%= render(:partial => "form", :locals => {:f => f}) %>
-
-<!--     <div class="form-buttons">
-      <%#= submit_tag(t(:edit) + " " + t(:professional)) %>
-    </div> --> 
   <% end %>
 </div>

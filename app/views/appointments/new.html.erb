@@ -1,4 +1,4 @@
-
+<% @page_title = "Create Appointment" %>
 
 <%= link_to("<< Return ", [@current_user, params[:controller]], :class => 'back-link') %>
 
@@ -9,17 +9,16 @@
    <% if @is_clinic %>
     <td>
       <h2><%= (@current_user.name )%></h2>
-       <h3> Create Appointment  <%#= (@clinic.name )%></h3>
+       <h3>    Create Appointment </h3>
     </td>
    <% else %>
      <td> 
        <h2> Professional <%= (@current_user.name )%></h2>
-       <h3> Create Appointment <%#= (@clinic.name )%></h3>
+       <h3> Create Appointment </h3>
      </td>
     <%end%>
  </tr>
 <br>
-  <h2><%#= "Create Appointment" %></h2>
 
   <%= form_for([@current_user, @appointment]) do |f| %>
 

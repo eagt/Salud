@@ -22,9 +22,9 @@ class ClinicsController < ApplicationController
 # Works for clinics on their own
  def new
       if !@is_clinic # If the user is a professional and is creating a new clinic
-         @clinic = @current_user.clinics.new(:creator => @current_user.name)
+         @clinic = @current_user.clinics.new(:creator => @current_user.name, :is_virtual => 1 )   # THIS (, :acc_active => 1) WAS ADDED ON 10-05-2016
       else # kicks in when registering a new Clinic
-         @clinic = Clinic.new(:creator => "Self")
+         @clinic = Clinic.new(:creator => "Self", :acc_active => 1, :is_virtual => 0)   # THIS (, :acc_active => 1) WAS ADDED ON 10-05-2016
       end   
    end
 
@@ -84,7 +84,7 @@ class ClinicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def clinic_params
-      params.require(:clinic).permit(:id, :creator, :name)
+      params.require(:clinic).permit(:id, :creator, :name, :acc_active, :is_virtual)
     end
 end
 

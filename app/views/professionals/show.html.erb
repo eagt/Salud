@@ -1,18 +1,21 @@
+
+<% @page_title = " Show Professional"%>
 <tr>
    <% if @is_clinic %>
     <td>
-      <h2> Clinic <%= (@current_user.name )%></h2>
-        <h3> Professional <%= (@professional.name )%></h3>
+    <br>
+      <h4> Professional Details </h4> 	  
+ 	  <h2> Clinic: <%= (@current_user.name )%></h2>
     </td>
    <% else %>
      <td> 
-       <h2> Professional <%= (@professional.name )%></h2>
+       <h2><%= (@professional.name )%></h2>
      </td>
     <%end%>
  </tr>
 
 <div class="table-responsive">
-  <table id="show_table" class="display responsive" summary="Company detail view">
+  <table id="show_table" class="display responsive" summary="professional detail view">
 
  	<tbody>
       	<br>
@@ -29,26 +32,41 @@
 			<th><%= t(:creator) %></th>
 			<td><%= @professional.creator%></td>
 		 </tr>
+
+		 <tr>
+          <th><%= link_to('Clinics'.pluralize(locale), @is_clinic ? [@current_user] : [@professional, :clinics]) %></th>
+          <td><%= @is_clinic ? "1" : @professional.clinics.size %></td>
+		</tr>
+
+		 <tr>
+		 	<th><%= link_to('Appointments',  @is_clinic? [@current_user, :appointments, {:professional_id => @professional.id}] : [@professional, :appointments])%></th>
+		 	<td><%= @is_clinic ? @professional.appointments.select {|s| s.clinic_id == @current_user.id}.size : @professional.appointments.size %></td>
+		 </tr>
+
+		 <tr> 
+		 	<th><%= link_to(' Clients' ,  @is_clinic ? [@current_user, :clients, {:professional_id => @professional.id}] : [@professional, :clients]) %></th>
+		 	<td><%= @is_clinic ? @professional.clients.select {|s| s.clinic_id == @current_user.id}.size : @professional.clients.size %></td>
+		 </tr>		
+
 	</tbody>
   </table>
- </div>
 
 
 
-
+<br><br>
 <%= link_to(t(:edit), [:edit, @current_user, @professional], :class => 'action edit') %> |
 
 <%#= link_to 'Back', :back %> 
 <%= link_to 'Back', [@current_user, params[:controller]] %> |
-
- <%= link_to('Appointments',  @is_clinic? [@current_user, :appointments, {:professional_id => @professional.id}] : [@professional, :appointments])%> |
-
-<%= link_to(' Clients' ,  @is_clinic ? [@current_user, :clients, {:professional_id => @professional.id}] : [@professional, :clients]) %></th> |
-           
-
  
 <% if !@is_clinic %>
 <%= link_to 'Clinics', professional_clinics_path(@professional) %>
 <% else %>
 <% end %> 
  
+
+<%= javascript_tag("$(document).ready( function () {$('#show_table').DataTable();} );") %>
+<%= javascript_tag("$('#show_table').DataTable( {responsive: true, paging: false} );") %>
+</div>
+
+

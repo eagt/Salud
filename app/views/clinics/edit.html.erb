@@ -1,36 +1,29 @@
 
-<% @page_title = t(:clinic).pluralize(locale) %>
+<% @page_title = " Edit Clinic" %>
 
-<h4>Clinic <%= @clinic.name %></h4>
+<tr>
+   <% if @is_clinic %>
+    <td>
+    <br>
+      <h2> Edit Clinic %></h2>
+    </td>
+   <% else %>
+     <td> 
+     <br>
+       <h4> Edit Clinic </h4>
+       <h2> Professional: <%= (@current_user.name )%></h2>       
+     </td>
+    <%end%>
+ </tr>
 
-<%= link_to("<<  Return ", [@current_user, params[:controller]], :class => 'back-link') %>
+<br><br>
 
 <div class="clinics edit">
-  <h2><%= "Uptade Clinic" %></h2>
-
   <%= form_for([@current_user, @clinic]) do |f| %>
-
     <%= render(:partial => "form", :locals => {:f => f}) %>
-
-<!--     <div class="form-buttons">
-      <%#= submit_tag(t(:edit) + " " + t(:professional)) %>
-    </div> --> 
-
   <% end %>
-
 </div>
 
-<%= link_to 'Show', @clinic %> |
-<%#= link_to 'Back', clinics_path %>
-<%= link_to 'Back', :back  %>
+<%= link_to(" Back ", [@current_user, params[:controller]], :class => 'back-link') %>
 
 
-
-<!-- 
-<h1>Editing Clinic</h1>
-
-<%#= render 'form' %>
-
-<%#= link_to 'Show', @clinic %> |
-<%#= link_to 'Back', clinics_path %>
-<%#= link_to 'Back', :back  %> -->

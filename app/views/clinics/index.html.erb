@@ -1,20 +1,42 @@
 
-
+<% @page_title = " Clinics" %>
 <tr>
-   <% if !@is_clinic %>
-    <td>
-      <h2> Professional <%= (@current_user.name )%></h2>
-      <h3>Clinics</h3>
-    </td>
-   <% else %>    
-   <%end%>
- </tr>
- <br>
+    <% if !@is_clinic %>
+      <td>
+      <br>
+          <h4> Clinic List </h4>
+
+<!-- The line below will be removed once the      logging is sorted out, as The profeional name will be place at the very toop of the app ( in the black part) -->   
+          <h2> Professional: <%= (@current_user.name )%></h2>  
+      </td>
+    <% else %> 
+    <h2> Clinic List </h2>   
+    <%end%>
+</tr>
+
+<br> <br> 
+
+<!-- A clinic won't be able to create another clinic apart from itself -->
+<% if !@is_clinic %>
+  <%= link_to('Add New Clinic', [:new, @current_user, params[:controller].singularize], :class => 'action new') %>
+<% else %>
+<% end %> 
+<br>
+<br>
 
 
-<%=  link_to("<< " + "Home", @current_user)  %>
 
+<!-- CHANGES TO HOME LINK. AT THE END IT WAS LEFT ON THE PROFESSIONAL LAYOUT TO BE TAKEN BY THE ENTIRE APPLICATION -->
 
+<%#= link_to(" << " + "Home", @current_user)  %>  <!-- This was the first method to refer to a Home link -->
+
+<%#= link_to raw('<span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home'),@current_user %> <!-- This is another way to refer to the Home link with a glyphicon -->
+
+<!-- This is the lates version for the Home glyphicon and it will be used on every page. -->
+<!-- <%#= link_to @current_user do %>
+  <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home
+
+<#% end %> -->
 
 <div class="table-responsive">
  <table class="table table-striped">
@@ -48,13 +70,7 @@
 </div>
 <br>
 
-  <!-- A clinic won't be able to create another clinic apart from itself -->
-<% if !@is_clinic %>
-  <%= link_to('New Clinic', [:new, @current_user, params[:controller].singularize], :class => 'action new') %>
-<% else %>
-<% end %> |
-
-<%#= link_to 'Back', [@current_user, params[:controller]] %>
+| <%#= link_to 'Back', [@current_user, params[:controller]] %>
 
 <%= link_to 'Back', :back %> |
 

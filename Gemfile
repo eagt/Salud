@@ -7,13 +7,27 @@ gem 'rails', '4.2.5.1'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'sass-rails', '~> 5.0'
+# Autoprefix it's optional, but recommended. It automatically adds the proper vendor prefixes 
+# to your CSS code  when it is compiled.
+gem 'autoprefixer-rails'
+
+gem 'rubocop', '~> 0.41.1', require: false
 # Use Uglifier as compressor for JavaScript assets
 #gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 #gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+
+# makes it easier to handle nested forms.
 gem 'cocoon', '~> 1.2', '>= 1.2.8'
+
+# adds pluralization for spanish
+gem 'inflections'
+
+# Adds datetime picker
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -25,9 +39,6 @@ gem 'turbolinks'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 
-gem 'pry'
-gem 'pry-rails'
-gem 'pry-nav'
 gem 'simple_form'
 
 # Use ActiveModel has_secure_password
@@ -48,7 +59,7 @@ group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+  gem 'sqlite3'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'

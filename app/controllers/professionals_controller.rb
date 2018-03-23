@@ -22,9 +22,9 @@ class ProfessionalsController < ApplicationController
 
   def new    
       if @is_clinic # If the user is a clinic and is creating a new  professional
-         @professional = @current_user.professionals.new(:creator => @current_user.name)
+         @professional = @current_user.professionals.new(:creator => @current_user.name, :is_virtual => 1)    # THIS (, :acc_active => 1) WAS ADDED ON 10-05-2016
       else # kicks in when registering a new Professional
-        @professional = Professional.new(:creator => "Self")
+        @professional = Professional.new(:creator => "Self", :acc_active => 1, :is_virtual => 0)  # THIS (, :acc_active => 1) WAS ADDED ON 10-05-2016
       end    
   end
 
@@ -67,7 +67,7 @@ class ProfessionalsController < ApplicationController
 
   def destroy
     professional = Professional.find(params[:id]).destroy
-    flash[:notice] = "Professional #{@professional.name} destroyed successfully. "
+    flash[:notice] = "Professional delted #{@professional.size}, Clinic delted #{@clinic.size}  etc ...destroyed successfully. "
     redirect_to([@current_user, :professionals])
   end
 
@@ -83,7 +83,7 @@ class ProfessionalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def professional_params
-      params.require(:professional).permit(:id, :creator, :name)
+      params.require(:professional).permit(:id, :creator, :name, :acc_active, :is_virtual)
     end
 end
 
